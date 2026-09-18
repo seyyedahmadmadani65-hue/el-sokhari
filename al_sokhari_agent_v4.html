@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ال سوخاری | سفارش‌یار v4</title>
+<style>
+:root{--yellow:#ffc928;--dark:#101318;--card:#fff;--muted:#68707d;--green:#16a35a;--red:#e5484d;--bg:#f4f5f7;--blue:#dceeff;--line:#e7e9ed}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Tahoma,Arial,sans-serif;color:#17191d}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}.app{max-width:480px;margin:auto;min-height:100vh;background:var(--bg);padding-bottom:82px}header{background:var(--dark);color:#fff;padding:18px;position:sticky;top:0;z-index:5}.brand{font-size:23px;font-weight:900}.brand small{display:block;color:#ffd43b;font-size:12px;margin-top:4px}.topnote{font-size:11px;color:#c8cbd1;margin-top:8px}main{padding:16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tile{padding:22px 14px;border-radius:18px;min-height:120px;text-align:right;font-weight:800;box-shadow:0 3px 12px #0000000d}.tile b{display:block;font-size:17px;margin-bottom:8px}.tile span{font-size:12px;color:#5e6570}.yellow{background:#ffd43b}.blue{background:#dceeff}.green{background:#c9f6dc}.purple{background:#eadcff}.card{background:var(--card);border-radius:18px;padding:15px;margin-bottom:12px;box-shadow:0 3px 12px #0000000b}h2{font-size:20px;margin:6px 0 15px}h3{font-size:15px;margin:4px 0 10px}label{font-size:12px;color:var(--muted);display:block;margin:12px 0 6px}input,textarea,select{width:100%;border:1px solid #d9dde3;border-radius:12px;padding:12px;background:#fff;outline:none}input:focus,textarea:focus,select:focus{border-color:#8daee0}.row{display:flex;gap:8px;flex-wrap:wrap}.choice{background:#f1f3f5;padding:10px 14px;border-radius:22px}.choice.active{background:var(--yellow);font-weight:800}.primary{width:100%;background:var(--green);color:#fff;padding:14px;border-radius:13px;font-weight:900;margin-top:12px}.secondary{width:100%;background:#eef0f2;padding:13px;border-radius:13px;font-weight:800;margin-top:8px}.warn{background:#fff3c4;padding:12px;border-radius:12px;font-size:12px;line-height:1.9}.info{background:#e9f2ff;padding:12px;border-radius:12px;font-size:12px;line-height:1.9}.successbox{background:#e8f8ee;padding:12px;border-radius:12px;font-size:12px;line-height:1.9}.item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0}.price{font-weight:900}.muted{color:var(--muted);font-size:12px}.total{font-size:20px;font-weight:900}.greenText{color:var(--green)}.redText{color:var(--red)}.hidden{display:none!important}.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:480px;width:100%;background:#11151b;color:#b9bec7;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:10}.nav button{background:transparent;color:inherit;padding:6px;font-size:11px}.nav button.active{color:var(--yellow);font-weight:900}.badge{padding:4px 8px;border-radius:10px;background:#e8f8ee;color:var(--green);font-size:11px}.screenTitle{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.smallbtn{background:#f0f2f4;border-radius:10px;padding:7px 10px;font-size:12px}.danger{color:var(--red);background:#fff0f0}.success{background:#e8f8ee;color:var(--green)}.empty{padding:24px;text-align:center;color:var(--muted)}.mini{font-size:11px;color:var(--muted);line-height:1.8}.option{border:1px solid #e1e4e8;border-radius:14px;padding:12px;margin-top:9px}.option.selected{border:2px solid var(--green);background:#f6fff9}.optionHead{display:flex;justify-content:space-between;gap:8px}.pill{display:inline-block;background:#f0f2f4;padding:4px 7px;border-radius:8px;font-size:11px;margin:3px 2px}.dangerInput{border-color:#e5484d}.qtybox{display:grid;grid-template-columns:1fr 100px;gap:8px;align-items:end}.step{display:grid;grid-template-columns:1fr 1fr;gap:8px}.center{text-align:center}.hr{height:1px;background:var(--line);margin:12px 0}
+</style></head>
+<body><div class="app"><header><div class="brand">🍗 ال سوخاری<small>ایجنت فروش و سفارش‌یار — نسخه ۴</small></div><div class="topnote">پیشنهاد → اصلاح → وزن‌کشی → مبلغ دقیق → ثبت سفارش</div></header><main id="content"></main>
+<nav class="nav"><button data-page="home" onclick="show('home')">⌂<br>داشبورد</button><button data-page="orders" onclick="show('orders')">▤<br>سفارش‌ها</button><button data-page="customers" onclick="show('customers')">♙<br>مشتریان</button><button data-page="settings" onclick="show('settings')">⚙<br>تنظیمات</button></nav></div>
+<script>
+// قیمت‌ها: هزار تومان. محصولات کیلوییِ دانه‌ای، قیمت نهایی‌شان بعد از وزن‌کشی محاسبه می‌شود.
+const products={
+ 'فیله استریپس':{price:1600,type:'weightCount',piece:'هر تکه حدود ۴۰ تا ۱۵۰ گرم',icon:'🍗'},
+ 'ران سوخاری':{price:1100,type:'weightCount',piece:'هر تکه حدود ۴۰ تا ۱۵۰ گرم',icon:'🍗'},
+ 'کتف و بال سوخاری':{price:1100,type:'weightCount',piece:'هر تکه حدود ۴۰ تا ۱۵۰ گرم',icon:'🍗'},
+ 'کوکتل پنیری':{price:1500,type:'weightCount',piece:'هر تکه حدود ۴۰ تا ۱۵۰ گرم',icon:'🌭'},
+ 'قارچ سوخاری':{price:890,type:'weight',piece:'هر مقدار',icon:'🍄'},
+ 'سیب‌زمینی سرخ‌کرده':{price:750,type:'weight',piece:'هر مقدار',icon:'🍟'},
+ 'سیب‌زمینی تنوری':{price:790,type:'weight',piece:'هر مقدار',icon:'🥔'},
+ 'چیکن پنیری':{price:1500,type:'weightCount',piece:'هر تکه حدود ۲۰ تا ۲۵ گرم',icon:'🧀'},
+ 'پیاز سوخاری':{price:850,type:'weightCount',piece:'هر تکه حدود ۲۰ تا ۳۰ گرم',icon:'🧅'},
+ 'کوردن بلو':{price:200,type:'item',piece:'هر عدد',icon:'🥩'},
+ 'سس سیر':{price:30,type:'item',piece:'هر عدد',icon:'🥣'},'سس چیلی تای':{price:30,type:'item',piece:'هر عدد',icon:'🌶️'},'سس باربیکیو':{price:30,type:'item',piece:'هر عدد',icon:'🥣'},
+ 'دیپ پنیر چدار':{price:80,type:'item',piece:'هر عدد',icon:'🧀'},'نوشابه خانواده':{price:122.1,type:'item',piece:'هر عدد',icon:'🥤'},'نوشابه قوطی':{price:95,type:'item',piece:'هر عدد',icon:'🥤'},'نوشابه پت کوچک':{price:55,type:'item',piece:'هر عدد',icon:'🥤'},'لیموناد شیشه':{price:72,type:'item',piece:'هر عدد',icon:'🍋'},'دوغ لیوانی':{price:35,type:'item',piece:'هر عدد',icon:'🥛'},'آب معدنی کوچک':{price:20,type:'item',piece:'هر عدد',icon:'💧'}
+};
+const chicken=['فیله استریپس','ران سوخاری','کتف و بال سوخاری','کوکتل پنیری'];
+const sides=['قارچ سوخاری','سیب‌زمینی سرخ‌کرده','سیب‌زمینی تنوری','پیاز سوخاری'];
+let state={page:'home',people:2,budget:800,likes:[],note:'',order:[],customer:{name:'',phone:''},orderType:'حضوری',recommendations:[]};
+function moneyK(k){return Math.round(k*1000).toLocaleString('fa-IR')+' تومان'}
+function linePrice(x){const p=products[x.name];if(p.type==='weight'||p.type==='weightCount')return p.price*(x.finalWeight??x.qty)/1000;if(p.type==='item')return p.price*x.qty;return 0}
+function totalK(){return state.order.reduce((s,x)=>s+linePrice(x),0)}
+function weightBasedPrice(name,w){return products[name].price*w/1000}
+function add(name,qty,mode='planned'){const p=products[name];state.order.push({name,qty:qty||1,mode,finalWeight:(p.type==='item'?null:null),count:p.type==='weightCount'?qty:null})}
+function show(page){state.page=page;document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));document.getElementById('content').innerHTML=({home,new:newOrder,recommend,edit:editOrder,weigh,confirm:confirmOrder,orders,ordersAll,customers,settings}[page]||home)();window.scrollTo(0,0)}
+function home(){let n=getOrders().filter(o=>o.date===todayKey()).length;return `<h2>سلام 👋</h2><div class="grid"><div class="tile yellow" onclick="startNew()"><b>➕ سفارش جدید</b><span>شروع سفارش مشتری</span></div><div class="tile blue" onclick="show('customers')"><b>👥 مشتریان</b><span>جست‌وجو و سفارش‌های قبلی</span></div><div class="tile green" onclick="show('orders')"><b>📋 سفارش‌های امروز</b><span>${n} سفارش ثبت‌شده</span></div><div class="tile purple" onclick="show('settings')"><b>⚙️ تنظیمات</b><span>محصولات و قوانین فروش</span></div></div><div class="card" style="margin-top:14px"><h3>شروع سریع</h3><div class="muted">مثلاً «دو نفریم، حدود ۸۰۰ تومن؛ خودت یه چیز خوشمزه بچین.»</div><button class="primary" onclick="startNew()">ساخت پیشنهاد هوشمند 🤖</button></div>`}
+function startNew(){state.order=[];state.likes=[];state.note='';state.customer={name:'',phone:''};state.orderType='حضوری';show('new')}
+function newOrder(){return `<div class="screenTitle"><h2>سفارش جدید</h2><button class="smallbtn" onclick="show('home')">بازگشت</button></div><div class="card"><h3>👤 اطلاعات مشتری</h3><label>شماره موبایل</label><input id="phone" inputmode="tel" value="${esc(state.customer.phone)}" placeholder="مثلاً 0912..." oninput="state.customer.phone=this.value"><label>نام مشتری (اختیاری)</label><input id="customerName" value="${esc(state.customer.name)}" placeholder="مثلاً احمد" oninput="state.customer.name=this.value"><label>نوع سفارش</label><div class="row">${['حضوری','بیرون‌بر','ارسال'].map(x=>`<button class="choice ${state.orderType===x?'active':''}" onclick="state.orderType='${x}';show('new')">${x}</button>`).join('')}</div></div><div class="card"><label>تعداد نفرات</label><div class="row">${[1,2,3,4,'۵+'].map(x=>`<button class="choice ${String(state.people)===String(x)?'active':''}" onclick="state.people='${x}';show('new')">${x}</button>`).join('')}</div><label>بودجه (هزار تومان)</label><input id="budget" type="number" min="0" value="${state.budget}" oninput="state.budget=+this.value"><label>سلیقه مشتری</label><div class="row">${['فیله','بال و کتف','پنیری','قارچ','سیب‌زمینی'].map(x=>`<button class="choice ${state.likes.includes(x)?'active':''}" onclick="toggleLike('${x}')">${x}</button>`).join('')}</div><label>توضیحات یا محدودیت</label><textarea id="note" rows="3" placeholder="مثلاً مرغ زیاد نمی‌خواد / تند دوست نداره">${esc(state.note)}</textarea><button class="primary" onclick="state.note=document.getElementById('note').value;buildRecommendation()">🤖 پیشنهاد بده</button></div>`}
+function toggleLike(x){state.likes=state.likes.includes(x)?state.likes.filter(a=>a!==x):[...state.likes,x];show('new')}
+function appetiteTarget(){const p=String(state.people);return p==='1'?250:p==='2'?500:p==='3'?750:p==='4'?1000:1250}
+function fitsWeight(name,w,b){return weightBasedPrice(name,w)<=b+0.0001}
+function makePlan(label,budget,profile){let items=[],spent=0;const addPlan=(name,w)=>{if(w<=0)return false;const cost=weightBasedPrice(name,w);if(spent+cost<=budget+0.0001){items.push({name,qty:w,mode:'planned',finalWeight:null,count:null});spent+=cost;return true}return false};const addItem=(name,q)=>{const cost=products[name].price*q;if(spent+cost<=budget+0.0001){items.push({name,qty:q,mode:'planned',finalWeight:null,count:null});spent+=cost;return true}return false};
+ let target=appetiteTarget();let preferred=profile==='cheesy'?'چیکن پنیری':state.likes.includes('فیله')?'فیله استریپس':state.likes.includes('بال و کتف')?'کتف و بال سوخاری':'فیله استریپس';
+ if(profile==='economic') preferred='کتف و بال سوخاری';
+ if(state.note.includes('مرغ زیاد')||state.note.includes('مرغ کم')) preferred='قارچ سوخاری';
+ if(preferred==='چیکن پنیری'){addPlan(preferred,Math.min(250,target));}else addPlan(preferred,Math.min(profile==='economic'?250:Math.max(250,target-250),500));
+ if(profile!=='economic' && spent<budget){if(state.likes.includes('بال و کتف')||state.likes.length===0)addPlan('کتف و بال سوخاری',Math.min(250,Math.max(0,target-items.filter(x=>x.name.includes('فیله')||x.name.includes('بال')).reduce((s,x)=>s+x.qty,0))));}
+ if((state.likes.includes('قارچ')||state.likes.length===0||profile==='varied')&&spent+222.5<=budget)addPlan('قارچ سوخاری',250);
+ if((state.likes.includes('سیب‌زمینی')||state.likes.length===0||profile==='varied')&&spent+187.5<=budget)addPlan('سیب‌زمینی سرخ‌کرده',250);
+ if((state.likes.includes('پنیری')||profile==='varied')&&spent+200<=budget)addItem('کوردن بلو',1);
+ if(spent===0){if(budget>=275)addPlan('کتف و بال سوخاری',250);else if(budget>=187.5)addPlan('سیب‌زمینی سرخ‌کرده',250);}
+ return {label,items,spent,remaining:budget-spent};}
+function buildRecommendation(){const b=Math.max(0,+state.budget||0);state.recommendations=[makePlan('اقتصادی',b,'economic'),makePlan('متعادل',b,'balanced'),makePlan('متنوع',b,'varied')].filter(x=>x.items.length);show('recommend')}
+function formatPlanned(x){const p=products[x.name];if(p.type==='weightCount')return `تعداد پیشنهادی: ${x.qty} گرم وزن تقریبی کل — تعداد نهایی دانه‌ها بعد از وزن‌کشی ثبت می‌شود`;if(p.type==='weight')return `${x.qty} گرم`;return `تعداد ${x.qty}`}
+function recommend(){return `<div class="screenTitle"><h2>🤖 پیشنهادهای ال سوخاری</h2><button class="smallbtn" onclick="show('new')">بازگشت</button></div><div class="card"><div class="muted">برای ${state.people} نفر | بودجه: ${moneyK(state.budget)}</div><div class="info" style="margin-top:10px">قیمت فیله، ران، بال‌وکتف، کوکتل، چیکن پنیری و پیاز سوخاری اگر دانه‌ای سفارش شوند، <b>بعد از وزن‌کشی</b> دقیق می‌شود. عدد قبل از وزن‌کشی فقط پیشنهاد وزنی/ترکیبی است.</div>${state.recommendations.map((r,i)=>`<div class="option ${i===1?'selected':''}"><div class="optionHead"><b>${r.label}</b><span class="badge">${moneyK(r.spent)}</span></div>${r.items.map(x=>`<div class="item"><span>${products[x.name].icon} ${x.name}<div class="mini">${formatPlanned(x)}</div></span><span class="price">${moneyK(linePrice(x))}</span></div>`).join('')}<div style="display:flex;justify-content:space-between;margin-top:10px"><span class="muted">باقی بودجه</span><b>${moneyK(r.remaining)}</b></div><button class="primary" onclick="selectRecommendation(${i})">انتخاب این پیشنهاد</button></div>`).join('')}</div>`}
+function selectRecommendation(i){state.order=state.recommendations[i].items.map(x=>({...x}));show('edit')}
+function displayOrderQty(x){const p=products[x.name];if(p.type==='weightCount'){if(x.count)return `تعداد ${x.count} | وزن نهایی ${x.finalWeight??'ثبت نشده'} گرم`;return `دانه‌ای/وزنی | ${x.qty} گرم هدف تقریبی`}if(p.type==='weight')return `${x.finalWeight??x.qty} گرم`;return `تعداد ${x.qty}`}
+function editOrder(){const t=totalK();return `<div class="screenTitle"><h2>✏️ اصلاح سفارش</h2><button class="smallbtn" onclick="show('recommend')">بازگشت</button></div><div class="card"><h3>اقلام فعلی</h3>${state.order.length?state.order.map((x,i)=>`<div class="item"><span>${products[x.name].icon} ${x.name}<div class="mini">${displayOrderQty(x)}<br>${products[x.name].piece}</div></span><button class="smallbtn danger" onclick="removeItem(${i})">حذف</button></div>`).join(''):'<div class="empty">هنوز محصولی انتخاب نشده.</div>'}<div class="hr"></div><div style="display:flex;justify-content:space-between"><span>جمع فعلی</span><b>${moneyK(t)}</b></div><label>افزودن محصول</label><select id="product">${Object.keys(products).map(n=>`<option value="${n}">${products[n].icon} ${n}</option>`).join('')}</select><label id="qtyLabel">مقدار</label><div class="qtybox"><input id="qty" type="number" min="1" value="250"><select id="qtyMode"><option value="weight">وزن (گرم)</option><option value="count">تعداد</option></select></div><div id="qtyHint" class="mini" style="margin-top:6px"></div><button class="primary" onclick="addFromEdit()">➕ اضافه کردن</button><button class="primary" onclick="show('weigh')">⚖️ رفتن به وزن‌کشی</button></div>`}
+function removeItem(i){state.order.splice(i,1);show('edit')}
+function updateQtyHint(){const n=document.getElementById('product')?.value;if(!n)return;const p=products[n];const sel=document.getElementById('qtyMode');if(p.type==='item'){sel.value='count';sel.disabled=true;document.getElementById('qty').value=1;document.getElementById('qtyHint').textContent='این قلم قیمت ثابتِ هر عدد دارد.'}else if(p.type==='weightCount'){sel.disabled=false;document.getElementById('qtyHint').textContent=p.piece+' — اگر دانه‌ای سفارش شود، تعداد ثبت و وزن واقعی بعداً وارد می‌شود.'}else{sel.value='weight';sel.disabled=true;document.getElementById('qtyHint').textContent='این محصول کیلویی است و مقدار آن آزاد است.'}}
+function addFromEdit(){const n=document.getElementById('product').value,q=+document.getElementById('qty').value||0,p=products[n],mode=document.getElementById('qtyMode').value;if(q<=0)return;if(p.type==='item')add(n,q);else if(p.type==='weightCount'&&mode==='count'){state.order.push({name:n,qty:q,mode:'count',count:q,finalWeight:null});}else{state.order.push({name:n,qty:q,mode:'weight',count:null,finalWeight:null});}show('edit')}
+function weigh(){return `<div class="screenTitle"><h2>⚖️ وزن‌کشی و مبلغ دقیق</h2><button class="smallbtn" onclick="show('edit')">بازگشت</button></div><div class="card"><div class="warn">قانون این مرحله: برای سفارش‌های دانه‌ای، <b>تعداد حفظ می‌شود</b> و وزن واقعی وارد می‌شود. برای اقلام کیلویی هم وزن واقعی را وارد کنید. مبلغ نهایی فقط از وزن واقعی محاسبه می‌شود.</div>${state.order.length?state.order.map((x,i)=>{const p=products[x.name];if(p.type==='item')return `<div class="item"><span>${p.icon} ${x.name}<div class="mini">قیمت ثابت: ${moneyK(p.price)} × ${x.qty}</div></span><span class="badge">ثابت</span></div>`;if(p.type==='weightCount')return `<div class="item"><span>${p.icon} ${x.name}<div class="mini">تعداد سفارش: ${x.count??x.qty} | ${p.piece}</div></span><div style="width:120px"><label style="margin-top:0">وزن واقعی (گرم)</label><input id="w${i}" type="number" min="1" value="${x.finalWeight??''}" placeholder="مثلاً ۴۸۰"></div></div>`;return `<div class="item"><span>${p.icon} ${x.name}<div class="mini">قیمت: ${moneyK(p.price)} / کیلو</div></span><div style="width:120px"><label style="margin-top:0">وزن واقعی (گرم)</label><input id="w${i}" type="number" min="1" value="${x.finalWeight??x.qty}" placeholder="گرم"></div></div>`}).join(''):'<div class="empty">سفارشی برای وزن‌کشی وجود ندارد.</div>'}<button class="primary" onclick="applyWeights()">محاسبه مبلغ نهایی</button></div>`}
+function applyWeights(){for(let i=0;i<state.order.length;i++){const x=state.order[i],p=products[x.name];if(p.type==='item')continue;const el=document.getElementById('w'+i);const w=+el.value||0;if(w<=0){alert('لطفاً وزن واقعی «'+x.name+'» را وارد کنید.');return;}x.finalWeight=w;}show('confirm')}
+function adjustFlexibleToBudget(){
+  const budget=+state.budget||0; let t=totalK();
+  if(t<=budget+0.0001)return true;
+
+  // همه اقلام وزنیِ قابل‌تنظیم با هم دیده می‌شوند؛ فقط یک قلم به‌تنهایی کم نمی‌شود.
+  // اقلام دانه‌ای که تعدادشان ثابت شده (mode=count) دست‌نخورده می‌مانند.
+  const candidates=state.order.map((x,i)=>{
+    const p=products[x.name];
+    if(p.type==='item'||x.mode==='count')return null;
+    const current=Number(x.finalWeight??x.qty)||0;
+    if(current<=0)return null;
+    const minWeight=sides.includes(x.name)?100:100;
+    const reducible=Math.max(0,current-minWeight);
+    if(reducible<=0)return null;
+    return {x,i,p,current,minWeight,reducible};
+  }).filter(Boolean);
+
+  if(!candidates.length)return false;
+
+  // کاهش را متناسب بین همه اقلام قابل‌تنظیم پخش می‌کنیم.
+  // اگر یک قلم به حداقل منطقی رسید، باقی کاهش بین اقلام دیگر توزیع می‌شود.
+  let guard=0;
+  while(t>budget+0.0001 && guard++<50){
+    const active=candidates.filter(c=>(Number(c.x.finalWeight??c.current)-c.minWeight)>0);
+    if(!active.length)break;
+
+    const excess=t-budget;
+    const totalReducibleValue=active.reduce((sum,c)=>{
+      const current=Number(c.x.finalWeight??c.current);
+      return sum + (current-c.minWeight)*c.p.price/1000;
+    },0);
+    if(totalReducibleValue<=0.0001)break;
+
+    let changed=false;
+    for(const c of active){
+      if(t<=budget+0.0001)break;
+      const current=Number(c.x.finalWeight??c.current);
+      const reducible=current-c.minWeight;
+      const share=totalReducibleValue>0 ? reducible*c.p.price/1000/totalReducibleValue : 0;
+      const targetValue=Math.min(excess*share, reducible*c.p.price/1000);
+      let reduceW=Math.max(1,Math.ceil(targetValue*1000/c.p.price));
+      reduceW=Math.min(reduceW,reducible);
+      if(reduceW>0){
+        c.x.finalWeight=current-reduceW;
+        changed=true;
+        t=totalK();
+      }
+    }
+    if(!changed)break;
+  }
+  return totalK()<=budget+0.0001;
+}
+function confirmOrder(){let t=totalK();const over=t>state.budget+0.0001;return `<div class="screenTitle"><h2>✅ تأیید نهایی</h2><button class="smallbtn" onclick="show('weigh')">وزن‌کشی</button></div><div class="card"><div class="item"><span>تعداد نفرات</span><b>${state.people}</b></div>${state.order.map(x=>`<div class="item"><span>${products[x.name].icon} ${x.name}<div class="mini">${displayOrderQty(x)}</div></span><b>${moneyK(linePrice(x))}</b></div>`).join('')}<div style="display:flex;justify-content:space-between;margin-top:15px"><span class="total">مبلغ نهایی</span><span class="total">${moneyK(t)}</span></div>${over?`<div class="warn redText" style="margin-top:12px">⚠️ مبلغ ${moneyK(t-state.budget)} از سقف بودجه بیشتر است. می‌توانیم از اقلام قابل‌تنظیم مثل سیب‌زمینی/قارچ کم کنیم یا از مشتری تأیید بگیریم.</div><button class="primary" onclick="if(adjustFlexibleToBudget())show('confirm');else alert('با اقلام قابل‌تنظیم فعلی، کاهش به سقف بودجه ممکن نیست.')">🛠️ تنظیم خودکار تا سقف بودجه</button>`:`<div class="successbox greenText" style="margin-top:12px">✅ مبلغ نهایی داخل بودجه است.</div><button class="primary" onclick="saveOrder()">ثبت نهایی سفارش</button>`}<button class="secondary" onclick="show('edit')">✏️ ویرایش سفارش</button></div>`}
+function getOrders(){return JSON.parse(localStorage.getItem('alsokhari_orders_v2')||'[]')}
+function setOrders(a){localStorage.setItem('alsokhari_orders_v2',JSON.stringify(a))}
+function getCustomers(){return JSON.parse(localStorage.getItem('alsokhari_customers_v2')||'[]')}
+function setCustomers(a){localStorage.setItem('alsokhari_customers_v2',JSON.stringify(a))}
+function todayKey(d=new Date()){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');return y+'-'+m+'-'+day}
+function nextOrderId(a){return a.reduce((m,o)=>Math.max(m,Number(o.id)||999),999)+1}
+function saveOrder(){
+  if(!state.order.length){alert('سفارش خالی است.');return;}
+  if(totalK()>state.budget+0.0001){alert('مبلغ سفارش از سقف بودجه بیشتر است.');return;}
+  const now=new Date(), arr=getOrders(), id=nextOrderId(arr);
+  const saved={id,time:now.toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'}),date:todayKey(now),createdAt:now.toISOString(),total:Math.round(totalK()*1000),items:JSON.parse(JSON.stringify(state.order)),people:state.people,status:'در انتظار',customer:{...state.customer},orderType:state.orderType};
+  arr.unshift(saved);setOrders(arr);
+  if(state.customer.phone){
+    let cs=getCustomers(), c=cs.find(x=>x.phone===state.customer.phone);
+    if(!c)c={phone:state.customer.phone,name:state.customer.name||'بدون نام',orders:0,totalSpent:0,history:[]};
+    c.name=state.customer.name||c.name||'بدون نام'; c.orders=(c.orders||0)+1;
+    c.totalSpent=(c.totalSpent||0)+saved.total; c.lastOrderTotal=saved.total; c.lastOrderAt=saved.time;
+    c.history=(c.history||[]).concat([{id:saved.id,date:saved.date,total:saved.total,time:saved.time,status:saved.status,items:saved.items.map(x=>({name:x.name,qty:x.qty,count:x.count,finalWeight:x.finalWeight}))}]);
+    cs=cs.filter(x=>x.phone!==state.customer.phone);cs.unshift(c);setCustomers(cs);
+  }
+  state.order=[];state.note='';state.likes=[];
+  alert('سفارش #'+id+' با موفقیت ثبت شد. ✅');show('orders');
+}
+function setStatus(id,status){let a=getOrders();let o=a.find(x=>x.id===id);if(o){o.status=status;setOrders(a);show('orders')}}function ordersAll(){const arr=getOrders();return `<div class="screenTitle"><h2>📚 همه سفارش‌ها</h2><button class="smallbtn" onclick="show('orders')">امروز</button></div>${arr.length?arr.map(o=>`<div class="card"><div style="display:flex;justify-content:space-between"><b>#${o.id}</b><span class="badge">${o.status}</span></div><div class="muted">${o.date||'-'} | ${o.time||'-'} | ${o.customer?.name?esc(o.customer.name):'بدون نام'}</div><div class="mini">${o.items.map(x=>x.name).join('، ')}</div><b>${moneyK((o.total||0)/1000)}</b></div>`).join(''):'<div class="card empty">هنوز سفارشی ثبت نشده.</div>'}`;}
+function orders(){
+  const arr=getOrders().filter(o=>o.date===todayKey()), sum=arr.reduce((s,o)=>s+(o.total||0),0);
+  return `<div class="screenTitle"><h2>📋 سفارش‌های امروز</h2><span class="badge">${arr.length} سفارش</span></div>
+  <div class="card"><div class="item"><span>تعداد سفارش امروز</span><b>${arr.length}</b></div><div class="item"><span>فروش ثبت‌شده امروز</span><b>${moneyK(sum/1000)}</b></div></div>
+  ${arr.length?arr.map(o=>`<div class="card"><div style="display:flex;justify-content:space-between"><b>#${o.id}</b><span class="badge">${o.status}</span></div><div class="muted">${o.time} | ${o.people} نفر | ${o.orderType||'حضوری'}${o.customer?.name?' | '+esc(o.customer.name):''}${o.customer?.phone?' | '+esc(o.customer.phone):''}</div><p>${o.items.map(x=>x.name).join('، ')}</p><b>${moneyK(o.total/1000)}</b><div class="row" style="margin-top:10px">${['در انتظار','در حال آماده‌سازی','آماده','تحویل شد'].map(st=>`<button class="smallbtn ${o.status===st?'success':''}" onclick="setStatus(${o.id},'${st}')">${st}</button>`).join('')}</div></div>`).join(''):'<div class="card empty">امروز هنوز سفارشی ثبت نشده.</div>'}
+  <button class="secondary" onclick="show('ordersAll')">📚 همه سفارش‌ها</button>`;
+}
+function customers(){let cs=getCustomers();return `<div class="screenTitle"><h2>👥 مشتریان</h2><span class="badge">${cs.length} مشتری</span></div><div class="card"><input id="customerSearch" oninput="renderCustomerList()" placeholder="جست‌وجو با شماره یا نام"><div id="customerList" style="margin-top:10px">${customerListHtml(cs)}</div></div>`}
+function customerListHtml(cs){return cs.length?cs.map(c=>`<div class="item"><span>👤 ${esc(c.name)}<div class="mini">${esc(c.phone)} | ${c.orders||0} سفارش | آخرین: ${c.lastOrderAt||'-'} | مجموع خرید: ${c.totalSpent?moneyK(c.totalSpent/1000):'-'}</div></span><b>${c.lastOrderTotal?moneyK(c.lastOrderTotal/1000):'-'}</b></div>`).join(''):'<div class="empty">هنوز مشتری ثبت نشده. هنگام ثبت سفارش، با شماره موبایل ذخیره می‌شود.</div>'}
+function renderCustomerList(){const el=document.getElementById('customerSearch');if(!el)return;let q=(el.value||'').trim();let cs=getCustomers().filter(c=>(c.phone||'').includes(q)||(c.name||'').includes(q));document.getElementById('customerList').innerHTML=customerListHtml(cs)}
+function settings(){return `<div class="screenTitle"><h2>⚙️ تنظیمات</h2></div><div class="card"><h3>قیمت‌های فعال</h3>${Object.entries(products).map(([n,p])=>`<div class="item"><span>${p.icon} ${n}<div class="mini">${p.type==='weight'?'کیلویی':p.type==='weightCount'?'کیلویی؛ امکان سفارش دانه‌ای و وزن‌کشی نهایی':'هر عدد'}</div></span><span>${p.type==='item'?moneyK(p.price):moneyK(p.price)+' / کیلو'}</span></div>`).join('')}<div class="info">قانون وزن تکه‌ها: فیله/ران/بال‌وکتف/کوکتل حدود ۴۰ تا ۱۵۰ گرم برای هر تکه؛ چیکن پنیری حدود ۲۰ تا ۲۵ گرم؛ پیاز حدود ۲۰ تا ۳۰ گرم. این‌ها محدودیت حداقل سفارش نیستند.</div><div class="warn" style="margin-top:10px">این نسخه هنوز به ترازو یا صندوق/POS وصل نیست؛ وزن واقعی فعلاً دستی وارد می‌شود. اتصال سخت‌افزار و هوش مصنوعی آنلاین مرحله بعد است.</div></div>`}
+function esc(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+document.addEventListener('change',e=>{if(e.target.id==='product')updateQtyHint()});show('home');
+</script></body></html>
