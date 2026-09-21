@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ال سوخاری | سفارش‌یار v5.23</title>
+<style>
+:root{--yellow:#ffc928;--dark:#101318;--card:#fff;--muted:#68707d;--green:#16a35a;--red:#e5484d;--bg:#f4f5f7;--line:#e7e9ed;--blue:#e9f2ff}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Tahoma,Arial,sans-serif;color:#17191d}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}.app{max-width:480px;margin:auto;min-height:100vh;background:var(--bg);padding-bottom:82px}header{background:var(--dark);color:#fff;padding:18px;position:sticky;top:0;z-index:5}.brand{font-size:23px;font-weight:900}.brand small{display:block;color:#ffd43b;font-size:12px;margin-top:4px}.topnote{font-size:11px;color:#c8cbd1;margin-top:8px}main{padding:16px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tile{padding:22px 14px;border-radius:18px;min-height:120px;text-align:right;font-weight:800;box-shadow:0 3px 12px #0000000d}.tile b{display:block;font-size:17px;margin-bottom:8px}.tile span{font-size:12px;color:#5e6570}.yellow{background:#ffd43b}.blue{background:#dceeff}.green{background:#c9f6dc}.purple{background:#eadcff}.card{background:var(--card);border-radius:18px;padding:15px;margin-bottom:12px;box-shadow:0 3px 12px #0000000b}h2{font-size:20px;margin:6px 0 15px}h3{font-size:15px;margin:4px 0 10px}label{font-size:12px;color:var(--muted);display:block;margin:12px 0 6px}input,textarea,select{width:100%;border:1px solid #d9dde3;border-radius:12px;padding:12px;background:#fff;outline:none}input:focus,textarea:focus,select:focus{border-color:#8daee0}.row{display:flex;gap:8px;flex-wrap:wrap}.choice{background:#f1f3f5;padding:10px 14px;border-radius:22px}.choice.active{background:var(--yellow);font-weight:800}.primary{width:100%;background:var(--green);color:#fff;padding:14px;border-radius:13px;font-weight:900;margin-top:12px}.secondary{width:100%;background:#eef0f2;padding:13px;border-radius:13px;font-weight:800;margin-top:8px}.warn{background:#fff3c4;padding:12px;border-radius:12px;font-size:12px;line-height:1.9}.info{background:var(--blue);padding:12px;border-radius:12px;font-size:12px;line-height:1.9}.successbox{background:#e8f8ee;padding:12px;border-radius:12px;font-size:12px;line-height:1.9}.item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0}.price{font-weight:900}.muted{color:var(--muted);font-size:12px}.total{font-size:20px;font-weight:900}.greenText{color:var(--green)}.redText{color:var(--red)}.hidden{display:none!important}.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:480px;width:100%;background:#11151b;color:#b9bec7;display:grid;grid-template-columns:repeat(4,1fr);padding:8px 6px calc(8px + env(safe-area-inset-bottom));z-index:10}.nav button{background:transparent;color:inherit;padding:6px;font-size:11px}.nav button.active{color:var(--yellow);font-weight:900}.badge{padding:4px 8px;border-radius:10px;background:#e8f8ee;color:var(--green);font-size:11px}.backbtn{border:0;background:#eef1f3;color:#222;border-radius:12px;padding:10px 16px;font-size:16px;font-weight:700;cursor:pointer;margin-bottom:10px}.screenTitle{position:relative;padding-top:4px}.screenTitle .backbtn{display:inline-block}
+.screenTitle{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.smallbtn{background:#f0f2f4;border-radius:10px;padding:7px 10px;font-size:12px}.danger{color:var(--red);background:#fff0f0}.success{background:#e8f8ee;color:var(--green)}.empty{padding:24px;text-align:center;color:var(--muted)}.mini{font-size:11px;color:var(--muted);line-height:1.8}.option{border:1px solid #e1e4e8;border-radius:14px;padding:12px;margin-top:9px}.option.selected{border:2px solid var(--green);background:#f6fff9}.optionHead{display:flex;justify-content:space-between;gap:8px}.pill{display:inline-block;background:#f0f2f4;padding:4px 7px;border-radius:8px;font-size:11px;margin:3px 2px}.qtybox{display:grid;grid-template-columns:1fr 100px;gap:8px;align-items:end}.hr{height:1px;background:var(--line);margin:12px 0}.checkline{display:flex;align-items:center;gap:9px;padding:11px 0}.checkline input{width:auto}.bigask{font-size:17px;font-weight:900;line-height:1.8}.stepbar{display:flex;gap:5px;margin-bottom:14px}.stepbar span{flex:1;height:6px;border-radius:9px;background:#e3e5e8}.stepbar span.on{background:var(--green)}.priceUnknown{color:#946200;font-size:11px}.choiceCard{border:1px solid #dfe3e7;border-radius:14px;padding:12px;margin-top:9px}.choiceCard.active{border:2px solid var(--green);background:#f6fff9}.remove{color:var(--red);background:#fff0f0;border-radius:9px;padding:6px 9px;font-size:11px}.modalBackdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:20px;z-index:9999}.modalCard{width:min(420px,100%);background:#fff;border-radius:18px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.25);text-align:center}.modalCard h3{margin:0 0 10px}.modalCard p{color:var(--muted);line-height:1.8;margin:0 0 16px}.modalActions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+body.customer-mode .nav{display:none!important}
+body.customer-mode .app{padding-bottom:20px}
+body.customer-mode .topnote{display:none}
+.customer-welcome{text-align:center}
+.customer-welcome .hero{font-size:54px;margin:8px 0 14px}
+</style></head>
+<body><div class="app"><header><div class="brand">🍗 ال سوخاری<small>ایجنت فروش و سفارش‌یار — نسخه ۵.۴۵</small></div><div class="topnote">پیشنهاد → تأیید مشتری → تکمیل سفارش → وزن‌کشی → مبلغ دقیق</div></header><main id="content"></main>
+<nav class="nav"><button data-page="home" onclick="show('home')">⌂<br>داشبورد</button><button data-page="orders" onclick="show('orders')">▤<br>سفارش‌ها</button><button data-page="customers" onclick="show('customers')">♙<br>مشتریان</button><button data-page="settings" onclick="show('settings')">⚙<br>تنظیمات</button></nav></div>
+<script>
+const products={
+ 'فیله استریپس':{price:1600,type:'weightCount',piece:'هر تکه حدود ۴۰ تا ۱۵۰ گرم',icon:'🍗'},
+ 'ران سوخاری':{price:1100,type:'weightCount',piece:'هر تکه حدود ۴۰ تا ۱۵۰ گرم',icon:'🍗'},
+ 'کتف و بال سوخاری':{price:1100,type:'weightCount',piece:'هر تکه حدود ۴۰ تا ۱۵۰ گرم',icon:'🍗'},
+ 'کوکتل پنیری':{price:1500,type:'weightCount',piece:'هر تکه حدود ۴۰ تا ۱۵۰ گرم',icon:'🌭'},
+ 'قارچ سوخاری':{price:890,type:'weight',piece:'هر مقدار',icon:'🍄'},
+ 'سیب‌زمینی سرخ‌کرده':{price:750,type:'weight',piece:'هر مقدار',icon:'🍟'},
+ 'سیب‌زمینی تنوری':{price:790,type:'weight',piece:'هر مقدار',icon:'🥔'},
+ 'چیکن پنیری':{price:1500,type:'weightCount',piece:'هر تکه حدود ۲۰ تا ۲۵ گرم',icon:'🧀'},
+ 'پیاز سوخاری':{price:850,type:'weightCount',piece:'هر تکه حدود ۲۰ تا ۳۰ گرم',icon:'🧅'},
+ 'پیتزا مخلوط ۲ نفره':{price:650,type:'item',piece:'۲ نفره',icon:'🍕'},
+ 'پیتزا قارچ و مرغ ۲ نفره':{price:650,type:'item',piece:'۲ نفره',icon:'🍕'},
+ 'پیتزا پپرونی ۲ نفره':{price:700,type:'item',piece:'۲ نفره',icon:'🍕'},
+ 'کوردن بلو':{price:200,type:'item',piece:'هر عدد',icon:'🥩'},
+ 'سس سیر':{price:30,type:'item',piece:'هر عدد',icon:'🥣'},'سس چیلی تای':{price:30,type:'item',piece:'هر عدد',icon:'🌶️'},'سس باربیکیو':{price:30,type:'item',piece:'هر عدد',icon:'🥣'},
+ 'دیپ پنیر چدار':{price:80,type:'item',piece:'هر عدد',icon:'🧀'},'نوشابه خانواده':{price:122.1,type:'item',piece:'هر عدد',icon:'🥤'},'نوشابه قوطی':{price:95,type:'item',piece:'هر عدد',icon:'🥤'},'نوشابه پت کوچک':{price:55,type:'item',piece:'هر عدد',icon:'🥤'},'لیموناد شیشه':{price:72,type:'item',piece:'هر عدد',icon:'🍋'},'دوغ لیوانی':{price:35,type:'item',piece:'هر عدد',icon:'🥛'},'آب معدنی کوچک':{price:20,type:'item',piece:'هر عدد',icon:'💧'}
+};
+const CUSTOMER_MODE = new URLSearchParams(location.search).get('customer') === '1';
+let state={page:'home',detailId:null,customerDetailPhone:null,people:4,budget:null,budgetMode:'max',likes:[],note:'',order:[],customer:{name:'',phone:''},orderType:'حضوری',stage:'new',orderMode:'smart',lastSaved:null,needsReweigh:false,budgetAdjustmentNote:'',budgetWarning:'',budgetOverride:false,editIndex:null,chickenPlan:[],sidesPlan:[],varietyPlan:[]};
+function moneyK(k){return Math.round(k*1000).toLocaleString('fa-IR')+' تومان'}
+function formatBudgetInput(el){const raw=String(el.value||'').replace(/[^0-9]/g,'');state.budget=raw===''?null:Number(raw);el.value=raw?Number(raw).toLocaleString('en-US'):'';}
+function budgetInputValue(){return state.budget==null?'':Number(state.budget).toLocaleString('en-US')}
+function budgetMoney(t){return Math.round(Number(t)||0).toLocaleString('en-US')+' تومان'}
+function linePrice(x){const p=products[x.name];if(p.type==='weight'||p.type==='weightCount')return p.price*(x.finalWeight??x.qty)/1000;if(p.type==='item')return p.price*x.qty;return 0}
+function totalK(){return state.order.reduce((s,x)=>s+linePrice(x),0)}
+function backPage(){const map={new:'home',chicken:'new',sides:'chicken',sidesEdit:'sides',variety:'sides',varietyEdit:'variety',edit:(state.orderMode==='custom'?'new':'variety'),weigh:'edit',confirm:'weigh',receipt:'home',orders:'home',ordersAll:'orders',orderDetail:'orders',customers:'home',customerDetail:'customers',settings:'home',reports:'home'};show(map[state.page]||'home')}
+function backButton(){return `<button class="backbtn" onclick="backPage()">‹ بازگشت</button>`}
+function customerHome(){
+  return `<div class="customer-welcome">
+    <div class="hero">🍗🍕</div>
+    <h2>خوش اومدی 👋</h2>
+  </div>
+  <div class="card">
+    <h3 style="text-align:center;font-size:18px">سفارشت رو چطور دوست داری بچینیم؟</h3>
+    <button class="primary" onclick="startCustomerSmart()">🤖 پیشنهاد هوشمند</button>
+    <button class="secondary" onclick="startCustomerCustom()">🛒 سفارش دلخواه</button>
+  </div>
+  <div class="card">
+    <div class="mini">سفارش آنلاین ال سوخاری</div>
+    <div class="info">سوخاری، پیتزا، مخلفات، سس و نوشیدنی رو می‌تونی داخل سفارشت انتخاب کنی.</div>
+  </div>`;
+}
+function startCustomerSmart(){
+  state.order=[];
+  state.orderMode='smart';
+  state.orderType='ارسال';
+  show('new');
+}
+function startCustomerCustom(){
+  state.order=[];
+  state.orderMode='custom';
+  state.orderType='ارسال';
+  startCustomOrder();
+}
+function show(page){if(CUSTOMER_MODE && page==='home'){state.page='home';document.getElementById('content').innerHTML=customerHome();window.scrollTo(0,0);return;}state.page=page;document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));document.getElementById('content').innerHTML=({home,new:newOrder,chicken:chickenConfirm,sides:sidesConfirm,sidesEdit:sidesEdit,variety:varietyConfirm,varietyEdit:varietyEdit,weigh,confirm:confirmOrder,receipt,edit:editOrder,orders,ordersAll,orderDetail,customers,customerDetail,settings,reports}[page]||home)();window.scrollTo(0,0);if(page==='edit')setTimeout(syncQtyMode,0);if(page==='weigh')setTimeout(previewWeights,0)}
+function home(){let n=getOrders().filter(o=>o.date===todayKey()).length;return `<h2>سلام 👋</h2><div class="grid"><div class="tile yellow" onclick="startNew()"><b>➕ سفارش جدید</b><span>شروع سفارش مشتری</span></div><div class="tile blue" onclick="show('customers')"><b>👥 مشتریان</b><span>جست‌وجو و سفارش‌های قبلی</span></div><div class="tile green" onclick="show('orders')"><b>📋 سفارش‌های امروز</b><span>${n} سفارش ثبت‌شده</span></div><div class="tile purple" onclick="show('reports')"><b>📊 گزارش‌ها</b><span>فروش و عملکرد مغازه</span></div><div class="tile" style="background:#eef0f2" onclick="show('settings')"><b>⚙️ تنظیمات</b><span>محصولات و قوانین فروش</span></div></div><div class="card" style="margin-top:14px"><h3>منطق جدید سفارش‌یار</h3><div class="muted">اول مقدار مرغ، بعد سیب‌زمینی و قارچ، بعد تنوع و در پایان سس و نوشیدنی؛ هر مرحله با تأیید مشتری جلو می‌رود.</div><button class="primary" onclick="startNew()">ساخت پیشنهاد هوشمند 🤖</button></div>`}
+function startNew(){state.order=[];state.likes=[];state.note='';state.customer={name:'',phone:''};state.orderType='حضوری';state.budget=null;state.budgetMode='max';state.needsReweigh=false;state.budgetAdjustmentNote='';state.budgetWarning='';state.budgetOverride=false;state.editIndex=null;state.orderMode='smart';state.chickenPlan=[];state.sidesPlan=[];state.varietyPlan=[];show('new')}
+function startCustomOrder(){
+  state.orderMode='custom';
+  state.order=[];
+  state.people=null;
+  state.budget=null;
+  state.budgetMode='max';
+  state.likes=[];
+  state.note='';
+  show('edit');
+}
+function newOrder(){return `<div class="screenTitle"><h2>سفارش جدید</h2><button class="smallbtn" onclick="show('home')">بازگشت</button></div><div class="stepbar"><span class="on"></span><span></span><span></span><span></span></div><div class="card"><h3>👤 اطلاعات مشتری</h3><label>شماره موبایل</label><input inputmode="tel" value="${esc(state.customer.phone)}" placeholder="مثلاً 0912..." oninput="state.customer.phone=this.value"><label>نام مشتری (اختیاری)</label><input value="${esc(state.customer.name)}" placeholder="مثلاً احمد" oninput="state.customer.name=this.value"><label>نوع سفارش</label><div class="row">${['حضوری','بیرون‌بر','ارسال'].map(x=>`<button class="choice ${state.orderType===x?'active':''}" onclick="state.orderType='${x}';show('new')">${x}</button>`).join('')}</div></div><div class="card"><label>تعداد نفرات</label><div class="row">${[1,2,3,4,5,6,8,10].map(x=>`<button class="choice ${Number(state.people)===x?'active':''}" onclick="state.people=${x};show('new')">${x}</button>`).join('')}</div><label>بودجه — اختیاری</label><div class="mini" style="margin:4px 2px 6px">مبلغ به تومان</div><input type="text" inputmode="numeric" value="${budgetInputValue()}" placeholder="مثلاً 1,300,000" oninput="formatBudgetInput(this)"><div class="row" style="margin-top:8px">${[['max','حداکثر'],['around','حدود']].map(a=>`<button class="choice ${state.budgetMode===a[0]?'active':''}" onclick="state.budgetMode='${a[0]}';show('new')">${a[1]}</button>`).join('')}</div><label>سلیقه مشتری</label><div class="row">${['فیله بیشتر','استخوان‌دار بیشتر','مرغ کمتر','تنوع زیاد','پنیری'].map(x=>`<button class="choice ${state.likes.includes(x)?'active':''}" onclick="toggleLike('${x}')">${x}</button>`).join('')}</div><label>توضیحات یا محدودیت</label><textarea rows="3" placeholder="مثلاً دو نفر کم‌خوراک‌اند / فیله دوست دارند" oninput="state.note=this.value">${esc(state.note)}</textarea>
+<button class="primary" onclick="state.orderMode='smart';buildChickenPlan()">پیشنهاد هوشمند 🍗</button>
+<button class="secondary" onclick="startCustomOrder()">✋ سفارش دلخواه مشتری</button>
+<div class="info" style="margin-top:10px">اگر مشتری خودش دقیقاً می‌داند چه می‌خواهد، «سفارش دلخواه مشتری» را بزنید تا بدون پیشنهاد خودکار، اقلام و تعداد/وزن را مستقیم وارد کنید.</div>
+</div>`}
+function toggleLike(x){state.likes=state.likes.includes(x)?state.likes.filter(a=>a!==x):[...state.likes,x];show('new')}
+function baseForPeople(n){const f=Math.max(1,Math.round(4*n/4));const r=Math.max(0,Math.round(2*n/4));const w=Math.max(1,Math.round(4*n/4));return {fillet:f,ran:r,wings:w}}
+function noteText(){return String(state.note||'').replace(/[‌]/g,' ').replace(/ي/g,'ی').replace(/ك/g,'ک').trim();}
+function normalizeIntentText(t){return String(t||'').replace(/[‌]/g,' ').replace(/ي/g,'ی').replace(/ك/g,'ک').replace(/\s+/g,' ').trim();}
+function noteIntent(){
+  const t=normalizeIntentText(noteText());
+  const map={
+    chicken:['مرغ','فیله','ران','بال','کتف','کوکتل','چیکن پنیری','توپک','کوردن'],
+    potato:['سیب زمینی','سیب‌زمینی','سیبزمینی','سیب زمینی سرخ','سیب زمینی تنوری'],
+    mushroom:['قارچ'], onion:['پیاز'], cordon:['کوردن','کوردن بلو'], cocktail:['کوکتل'],
+    cheesy:['چیکن پنیری','توپک','پنیری'], pizza:['پیتزا']
+  };
+  const mentioned=[]; for(const [key,words] of Object.entries(map)) if(words.some(w=>t.includes(w))) mentioned.push(key);
+  const only=/(?:^|\s)(?:فقط|صرفاً|تنها)(?:\s|$)/.test(t) || /فقط همین/.test(t);
+  const explicitJoin=/(?:\s|^)(?:و|،|,)(?:\s|$)/.test(t);
+  const bounded=/(?:باشه|باشد|بذار|بذارید|می ?خوام|می ?خواه[مید]|می ?خوایم|دوست دارم|در حد|هم باشه|هم می ?خوام)/.test(t);
+  const exclude=/(?:نباشه|نباشد|نمی ?خوام|نمی ?خواهم|نمی ?خواه[مید]|بدون|حذف|نذار|نذارید|نمی ?خواد)/.test(t);
+  const explicit=mentioned.length>0 && (only || bounded || explicitJoin || exclude);
+  return {t,mentioned,only,explicit,exclude};
+}
+function hasNoToken(t, words){return words.some(w=>new RegExp('(?:بدون\\s+(?:هیچ\\s+)?'+w+'|'+w+'\\s*(?:نباشه|نباشد|نمی ?خوام|نمی ?خواهم|نمی ?خواه[مید]|حذف بشه|حذف شود))').test(t));}
+function excludedItems(){
+  const t=normalizeIntentText(noteText());
+  const deny=new Set();
+  if(hasNoToken(t,['مرغ'])) ['فیله استریپس','ران سوخاری','کتف و بال سوخاری','کوکتل پنیری','چیکن پنیری'].forEach(x=>deny.add(x));
+  if(hasNoToken(t,['فیله'])) deny.add('فیله استریپس');
+  if(hasNoToken(t,['ران'])) deny.add('ران سوخاری');
+  if(hasNoToken(t,['بال','کتف'])) deny.add('کتف و بال سوخاری');
+  if(hasNoToken(t,['کوکتل'])) deny.add('کوکتل پنیری');
+  if(hasNoToken(t,['توپک','چیکن پنیری','پنیری'])) {deny.add('چیکن پنیری'); deny.add('کوردن بلو');}
+  if(hasNoToken(t,['قارچ'])) deny.add('قارچ سوخاری');
+  if(hasNoToken(t,['سیب زمینی','سیب‌زمینی','سیبزمینی'])) {deny.add('سیب‌زمینی سرخ‌کرده');deny.add('سیب‌زمینی تنوری');}
+  if(hasNoToken(t,['پیاز'])) deny.add('پیاز سوخاری');
+  if(hasNoToken(t,['کوردن'])) deny.add('کوردن بلو');
+  if(hasNoToken(t,['پیتزا'])) ['پیتزا مخلوط ۲ نفره','پیتزا قارچ و مرغ ۲ نفره','پیتزا پپرونی ۲ نفره'].forEach(x=>deny.add(x));
+  return deny;
+}
+function requiredItems(){
+  const t=normalizeIntentText(noteText()); const req=new Set();
+  if(/(?:حتماً|حتما|لازم(?:ه| است)|باید|حتماً باشه|حتما باشه)/.test(t)){
+    if(t.includes('کوردن')) req.add('کوردن بلو');
+    if(t.includes('کوکتل')) req.add('کوکتل پنیری');
+    if(t.includes('توپک')||t.includes('چیکن پنیری')) req.add('چیکن پنیری');
+    if(t.includes('پنیری') && !t.includes('نباشه') && !t.includes('نباشد') && !t.includes('نمی خوا')) req.add('کوردن بلو');
+    if(t.includes('پیاز')) req.add('پیاز سوخاری');
+    if(t.includes('قارچ')) req.add('قارچ سوخاری');
+    if(t.includes('سیب زمینی')||t.includes('سیب‌زمینی')||t.includes('سیبزمینی')) req.add('سیب‌زمینی سرخ‌کرده');
+  }
+  return req;
+}
+function pizzaIntent(){
+  const t=normalizeIntentText(noteText());
+  return {mentioned:t.includes('پیتزا'),pepperoni:t.includes('پپرونی'),mixed:t.includes('مخلوط'),chickenMushroom:t.includes('قارچ و مرغ')};
+}
+function noChickenRequested(){return excludedItems().has('فیله استریپس')&&excludedItems().has('ران سوخاری')&&excludedItems().has('کتف و بال سوخاری')&&excludedItems().has('کوکتل پنیری')&&excludedItems().has('چیکن پنیری');}
+function allowedItemIntent(){
+  const it=noteIntent(); if(!it.explicit) return null;
+  const t=it.t, allow=new Set();
+  // A "only" request is restrictive. For normal "X and Y" requests, it is also restrictive.
+  if(it.mentioned.includes('chicken')){
+    if(t.includes('فیله')) allow.add('فیله استریپس');
+    if(t.includes('ران')) allow.add('ران سوخاری');
+    if(t.includes('کتف')||t.includes('بال')) allow.add('کتف و بال سوخاری');
+    if(t.includes('کوکتل')) allow.add('کوکتل پنیری');
+    if(t.includes('چیکن پنیری')||t.includes('توپک')) allow.add('چیکن پنیری');
+    if(t.includes('کوردن')) allow.add('کوردن بلو');
+    if(t.includes('مرغ')&&!['فیله استریپس','ران سوخاری','کتف و بال سوخاری','کوکتل پنیری','چیکن پنیری','کوردن بلو'].some(x=>allow.has(x))) ['فیله استریپس','ران سوخاری','کتف و بال سوخاری'].forEach(x=>allow.add(x));
+  }
+  if(it.mentioned.includes('potato')) {allow.add('سیب‌زمینی سرخ‌کرده');}
+  if(it.mentioned.includes('mushroom')) allow.add('قارچ سوخاری');
+  if(it.mentioned.includes('onion')) allow.add('پیاز سوخاری');
+  if(it.mentioned.includes('cordon')) allow.add('کوردن بلو');
+  if(it.mentioned.includes('cocktail')) allow.add('کوکتل پنیری');
+  if(it.mentioned.includes('cheesy')) {allow.add('چیکن پنیری');allow.add('کوکتل پنیری');allow.add('کوردن بلو');}
+  const deny=excludedItems(); deny.forEach(x=>allow.delete(x));
+  const positive=allow.size>0;
+  return positive ? allow : null;
+}
+function adjustChickenForTaste(base){
+  let x={...base}; const deny=excludedItems();
+  if(noChickenRequested()) return {fillet:0,ran:0,wings:0};
+  const allowed=allowedItemIntent();
+  if(allowed){
+    x.fillet=allowed.has('فیله استریپس')?x.fillet:0;
+    x.ran=allowed.has('ران سوخاری')?x.ran:0;
+    x.wings=allowed.has('کتف و بال سوخاری')?x.wings:0;
+  }
+  if(deny.has('فیله استریپس')) x.fillet=0;
+  if(deny.has('ران سوخاری')) x.ran=0;
+  if(deny.has('کتف و بال سوخاری')) x.wings=0;
+  if(state.likes.includes('فیله بیشتر') && x.fillet>0){x.fillet+=Math.max(1,Math.round(x.ran/2));x.ran=Math.max(0,x.ran-1);x.wings=Math.max(0,x.wings-1)}
+  if(state.likes.includes('استخوان‌دار بیشتر') && (x.ran>0||x.wings>0)){x.ran+=1;x.wings+=Math.max(1,Math.round(x.fillet/4));if(x.fillet>0)x.fillet=Math.max(1,x.fillet-1)}
+  if(state.likes.includes('مرغ کمتر')||/مرغ\s*(کم|زیاد ن?می)/.test(noteText())){if(x.fillet>0)x.fillet=Math.max(1,Math.round(x.fillet*.75));if(x.ran>0)x.ran=Math.max(0,Math.round(x.ran*.75));if(x.wings>0)x.wings=Math.max(1,Math.round(x.wings*.75))}
+  return x;
+}
+function buildChickenPlan(){
+  state.chickenPlan=adjustChickenForTaste(baseForPeople(Number(state.people)||4));
+  // اگر طبق توضیحات مشتری هیچ آیتم مرغی باقی نمانده، مرحله مرغ را اصلاً نشان نده.
+  // مستقیم وارد مرحله دورچین می‌شویم.
+  if(!state.chickenPlan.fillet && !state.chickenPlan.ran && !state.chickenPlan.wings){
+    state.order=[];
+    buildSidesPlan();
+    return;
+  }
+  show('chicken');
+}
+function chickenConfirm(){const p=state.chickenPlan;const none=noChickenRequested();const allowed=allowedItemIntent();return `<div class="screenTitle">${backButton()}<h2>🍗 مرحله ۱: مقدار مرغ</h2></div><div class="stepbar"><span class="on"></span><span></span><span></span><span></span></div><div class="card">${none?`<div class="successbox">طبق توضیحات مشتری، <b>مرغ نباید در سفارش باشد</b>؛ بنابراین اقلام مرغی حذف شدند.</div>`:`<div class="bigask">${allowed?`طبق توضیحات مشتری، فقط اقلام مشخص‌شده در توضیحات پیشنهاد می‌شوند:`:`برای ${state.people} نفر، این ترکیب رو پیشنهاد می‌کنم:`}</div>${p.fillet?`<div class="item"><span>🍗 فیله استریپس</span><b>${p.fillet} عدد</b></div>`:''}${p.ran?`<div class="item"><span>🍗 ران سوخاری</span><b>${p.ran} عدد</b></div>`:''}${p.wings?`<div class="item"><span>🍗 کتف و بال سوخاری</span><b>${p.wings} عدد</b></div>`:''}${(!p.fillet&&!p.ran&&!p.wings)?`<div class="empty">هیچ آیتم مرغی برای پیشنهاد باقی نمانده.</div>`:''}<div class="info" style="margin-top:12px">قیمت دقیق اقلام دانه‌ای بعد از وزن‌کشی مشخص می‌شود.</div><p class="bigask" style="margin-top:16px">این مقدار مرغ براتون کافیه یا بیشتر میل دارید؟</p>`}<button class="primary" onclick="acceptChicken()">${none?'بله، بریم مرحله بعد':allowed?'بله، بریم مرحله بعد':'کافیه، بریم مرحله بعد'}</button>${none||allowed?'':`<button class="secondary" onclick="moreChicken()">بیشتر می‌خوایم 🍗</button><button class="secondary" onclick="chickenLess()">کمی کمتر</button>`}</div>`}
+function acceptChicken(){
+  state.order=[];
+  [['فیله استریپس',state.chickenPlan.fillet],['ران سوخاری',state.chickenPlan.ran],['کتف و بال سوخاری',state.chickenPlan.wings]].forEach(([n,q])=>{if(q>0)state.order.push({name:n,qty:q,mode:'count',count:q,finalWeight:null})});
+  buildSidesPlan();
+}
+function moreChicken(){
+  state.chickenPlan.fillet += 1; state.chickenPlan.wings += 1;
+  if (state.chickenPlan.fillet % 2 === 0) state.chickenPlan.ran += 1;
+  show('chicken');
+}
+function chickenLess(){
+  if (state.chickenPlan.fillet > 1) {state.chickenPlan.fillet -= 1;state.chickenPlan.wings=Math.max(1,state.chickenPlan.wings-1);if(state.chickenPlan.fillet%2===1)state.chickenPlan.ran=Math.max(1,state.chickenPlan.ran-1);}
+  show('chicken');
+}
+function varietyBase(n){
+  n=Math.max(1,Number(n)||4);
+  const scale=n/4;
+  return {
+    cocktail: Math.max(0,Math.round(2*scale)),
+    balls: Math.max(0,Math.round(4*scale)),
+    onion: Math.max(0,Math.round(3*scale)),
+    cordon: Math.max(0,Math.round(1*scale))
+  };
+}
+function buildVariety(){
+  const n=Number(state.people)||4; let v=varietyBase(n); const allowed=allowedItemIntent(), deny=excludedItems(), req=requiredItems();
+  if(allowed){v={cocktail:allowed.has('کوکتل پنیری')?v.cocktail:0,balls:allowed.has('چیکن پنیری')?v.balls:0,onion:allowed.has('پیاز سوخاری')?v.onion:0,cordon:allowed.has('کوردن بلو')?v.cordon:0};}
+  else {if(state.likes.includes('تنوع زیاد')){v.cocktail+=1;v.balls+=1;v.onion+=1}if(state.likes.includes('پنیری')){v.cocktail+=1;v.balls+=1}}
+  if(deny.has('کوکتل پنیری')) v.cocktail=0;
+  if(deny.has('چیکن پنیری')) v.balls=0;
+  if(deny.has('پیاز سوخاری')) v.onion=0;
+  if(deny.has('کوردن بلو')) v.cordon=0;
+  if(req.has('کوکتل پنیری')&&!deny.has('کوکتل پنیری')) v.cocktail=Math.max(1,v.cocktail);
+  if(req.has('چیکن پنیری')&&!deny.has('چیکن پنیری')) v.balls=Math.max(1,v.balls);
+  if(req.has('پیاز سوخاری')&&!deny.has('پیاز سوخاری')) v.onion=Math.max(1,v.onion);
+  if(req.has('کوردن بلو')&&!deny.has('کوردن بلو')) v.cordon=Math.max(1,v.cordon);
+  state.varietyPlan=v; buildExtras();
+  if(v.cocktail||v.balls||v.onion||v.cordon) show('variety');
+}
+function buildSidesPlan(){
+  const n=Number(state.people)||4, base=Math.max(50,Math.round(n*100)), allowed=allowedItemIntent(), deny=excludedItems();
+  const potatoAllowed=allowed?allowed.has('سیب‌زمینی سرخ‌کرده'):!deny.has('سیب‌زمینی سرخ‌کرده');
+  const mushroomAllowed=allowed?allowed.has('قارچ سوخاری'):!deny.has('قارچ سوخاری');
+  state.sidesPlan={potato:potatoAllowed?base:0,mushroom:mushroomAllowed?base:0};
+  if(allowed && !state.sidesPlan.potato && !state.sidesPlan.mushroom){buildVariety();return;}
+  if(!allowed && !state.sidesPlan.potato && !state.sidesPlan.mushroom){buildVariety();return;}
+  show('sides');
+}
+function sidesConfirm(){const s=state.sidesPlan;return `<div class="screenTitle">${backButton()}<h2>🍟 مرحله ۲: دورچین</h2></div><div class="stepbar"><span class="on"></span><span class="on"></span><span></span><span></span></div><div class="card"><div class="bigask">برای ${state.people} نفر، دورچین زیر رو پیشنهاد می‌کنم:</div>${s.potato?`<div class="item"><span>🍟 سیب‌زمینی سرخ‌کرده</span><b>${s.potato} گرم</b></div>`:''}${s.mushroom?`<div class="item"><span>🍄 قارچ سوخاری</span><b>${s.mushroom} گرم</b></div>`:''}${(!s.potato&&!s.mushroom)?`<div class="empty">دورچین پیشنهادی مطابق توضیحات مشتری ندارد.</div>`:''}<div class="info" style="margin-top:12px">مقدارها تقریبی‌اند و می‌تونیم کمتر یا بیشترشون کنیم؛ معمولاً بیشتر از ۱۰۰ گرم برای هر نفر پیشنهاد نمی‌دیم مگر اینکه خودتون بخواید.</div><p class="bigask" style="margin-top:16px">این مقدار مناسبه؟</p><button class="primary" onclick="acceptSides()">بله، مناسبه</button><button class="secondary" onclick="changeSides()">✏️ تغییر مقدار</button><button class="secondary danger" onclick="skipSides()">❌ اینا رو نمی‌خوایم</button></div>`}
+function changeSides(){show('sidesEdit')}
+function sidesEdit(){const s=state.sidesPlan;return `<div class="screenTitle">${backButton()}<h2>✏️ تغییر مقدار دورچین</h2></div><div class="card"><div class="info">مقدار هر کدوم رو که می‌خواید تغییر بدید وارد کنید. می‌تونید صفر هم بزنید.</div>${s.potato||!allowedItemIntent()?`<label>🍟 سیب‌زمینی سرخ‌کرده (گرم)</label><input id="editPotato" type="number" min="0" value="${s.potato}">`:''}${s.mushroom||!allowedItemIntent()?`<label>🍄 قارچ سوخاری (گرم)</label><input id="editMushroom" type="number" min="0" value="${s.mushroom}">`:''}<button class="primary" onclick="saveSidesEdit()">تأیید مقدار جدید</button><button class="secondary" onclick="show('sides')">انصراف</button></div>`}
+function saveSidesEdit(){const s=state.sidesPlan;const ep=document.getElementById('editPotato'),em=document.getElementById('editMushroom');const potato=ep?+ep.value:0,mushroom=em?+em.value:0;if(!Number.isFinite(potato)||!Number.isFinite(mushroom)||potato<0||mushroom<0){alert('لطفاً مقدار معتبر وارد کنید.');return;}s.potato=Math.round(potato);s.mushroom=Math.round(mushroom);show('sides')}
+function skipSides(){state.sidesPlan.potato=0;state.sidesPlan.mushroom=0;acceptSides()}
+function acceptSides(){if(state.sidesPlan.potato>0)state.order.push({name:'سیب‌زمینی سرخ‌کرده',qty:state.sidesPlan.potato,mode:'weight',finalWeight:null});if(state.sidesPlan.mushroom>0)state.order.push({name:'قارچ سوخاری',qty:state.sidesPlan.mushroom,mode:'weight',finalWeight:null});buildVariety();}
+function varietyConfirm(){const v=state.varietyPlan;return `<div class="screenTitle">${backButton()}<h2>🧀 مرحله ۳: تنوع</h2></div><div class="stepbar"><span class="on"></span><span class="on"></span><span class="on"></span><span></span></div><div class="card"><div class="bigask">برای تنوع این مقدار رو پیشنهاد می‌کنم:</div>${v.cocktail?`<div class="item"><span>🌭 کوکتل پنیری</span><b>${v.cocktail} عدد</b></div>`:''}${v.balls?`<div class="item"><span>🧀 توپک (چیکن پنیری)</span><b>${v.balls} عدد</b></div>`:''}${v.onion?`<div class="item"><span>🧅 پیاز سوخاری</span><b>${v.onion} عدد</b></div>`:''}${v.cordon?`<div class="item"><span>🥩 کوردن‌بلو</span><b>${v.cordon} عدد</b></div>`:''}${(!v.cocktail&&!v.balls&&!v.onion&&!v.cordon)?`<div class="empty">هیچ آیتم تنوعی انتخاب نشده.</div>`:''}<div class="info" style="margin-top:12px">این‌ها فقط پیشنهاد اولیه هستند؛ مقدار نهایی را شما انتخاب می‌کنید. کوردن‌بلو هم اجباری نیست.</div><p class="bigask" style="margin-top:16px">این ترکیب مورد تأییده؟</p><button class="primary" onclick="acceptVariety()">بله، بریم ادامه</button><button class="secondary" onclick="editVariety()">✏️ تغییر مقدار</button><button class="secondary danger" onclick="skipVariety()">❌ اینا رو نمی‌خوایم</button></div>`}
+
+function addCount(name, qty){
+  qty = Number(qty || 0);
+  if (qty <= 0) return;
+  const product = products[name];
+  if (!product) return;
+
+  const existing = state.order.find(x => x.name === name);
+  if (existing) {
+    existing.qty = Number(existing.qty || 0) + qty;
+    if (existing.count != null) existing.count = Number(existing.count || 0) + qty;
+  } else {
+    state.order.push({
+      name: name,
+      qty: qty,
+      mode: product.type === 'item' ? 'item' : 'count',
+      count: product.type === 'item' ? null : qty,
+      finalWeight: null
+    });
+  }
+}
+
+function acceptVariety(){const v=state.varietyPlan;addCount('کوکتل پنیری',v.cocktail);addCount('چیکن پنیری',v.balls);addCount('پیاز سوخاری',v.onion);if(v.cordon)addCount('کوردن بلو',v.cordon);buildExtras()}
+function skipVariety(){state.varietyPlan={cocktail:0,balls:0,onion:0,cordon:0};buildExtras()}
+function editVariety(){show('varietyEdit')}
+function varietyEdit(){const v=state.varietyPlan;return `<div class="screenTitle">${backButton()}<h2>✏️ تغییر مقدار تنوع</h2></div><div class="card"><div class="info">مقدارهای بالا فقط پیشنهاد اولیه‌اند. می‌توانید هرکدام را به دلخواه تغییر دهید یا صفر کنید.</div><label>🌭 کوکتل پنیری</label><input id="vcocktail" type="number" min="0" step="1" value="${v.cocktail}"><label>🧀 توپک (چیکن پنیری)</label><input id="vballs" type="number" min="0" step="1" value="${v.balls}"><label>🧅 پیاز سوخاری</label><input id="vonion" type="number" min="0" step="1" value="${v.onion}"><label>🥩 کوردن‌بلو</label><input id="vcordon" type="number" min="0" step="1" value="${v.cordon}"><button class="primary" onclick="saveVarietyEdit()">ذخیره مقدار</button><button class="secondary" onclick="show('variety')">انصراف</button></div>`}
+function saveVarietyEdit(){state.varietyPlan={cocktail:Math.max(0,parseInt(document.getElementById('vcocktail').value||0,10)),balls:Math.max(0,parseInt(document.getElementById('vballs').value||0,10)),onion:Math.max(0,parseInt(document.getElementById('vonion').value||0,10)),cordon:Math.max(0,parseInt(document.getElementById('vcordon').value||0,10))};show('variety')}
+
+function buildExtras(){
+  const deny=excludedItems(), req=requiredItems(), pi=pizzaIntent();
+  // Remove any automatically generated item that the customer explicitly excluded.
+  state.order=state.order.filter(x=>!deny.has(x.name));
+  // Add required variety items once.
+  // Specific pizza requests are added automatically because their price is fixed.
+  if(pi.pepperoni) addPizza('پیتزا پپرونی ۲ نفره');
+  else if(pi.mixed) addPizza('پیتزا مخلوط ۲ نفره');
+  else if(pi.chickenMushroom) addPizza('پیتزا قارچ و مرغ ۲ نفره');
+  show('edit');
+}
+function estimatedLinePrice(x){
+  const p=products[x.name];
+  // Budget values are stored in تومان, so this function must also return تومان.
+  if(p.type==='item') return p.price*1000;
+  if(x.finalWeight&&Number(x.finalWeight)>0) return p.price*Number(x.finalWeight);
+  if(p.type==='weightCount'){
+    const avg={
+      'فیله استریپس':95,
+      'ران سوخاری':95,
+      'کتف و بال سوخاری':95,
+      'کوکتل پنیری':95,
+      'چیکن پنیری':22.5,
+      'پیاز سوخاری':25
+    }[x.name]||50;
+    return p.price*avg*Number(x.count||x.qty||0);
+  }
+  return p.price*Number(x.qty||0);
+}
+function budgetPrecheck(){
+  if(state.orderMode==='custom'||state.budget==null) return true;
+  const budget=+state.budget;
+  const estimate=state.order.reduce((s,x)=>s+estimatedLinePrice(x),0);
+  if(estimate<=budget+0.0001){state.budgetWarning='';state.budgetOverride=false;return true;}
+  const over=estimate-budget;
+  state.budgetWarning=state.budgetMode==='around'
+    ?`⚠️ این ترکیب با وزن‌های معمول احتمالاً حدود ${budgetMoney(estimate)} می‌شود؛ یعنی حدود ${budgetMoney(over)} بیشتر از بودجه حدودی ${budgetMoney(budget)}.`
+    :`⚠️ این ترکیب با وزن‌های معمول احتمالاً حدود ${budgetMoney(estimate)} می‌شود؛ یعنی حدود ${budgetMoney(over)} بالاتر از سقف ${budgetMoney(budget)}.`;
+  return false;
+}
+function hasWeighableItems(){
+  return state.order.some(x=>{
+    const p=products[x.name];
+    return p && p.type!=='item';
+  });
+}
+function goToNextStep(){
+  if(!budgetPrecheck()){ show('edit'); return; }
+  state.budgetWarning='';
+  if(hasWeighableItems()) show('weigh');
+  else show('confirm');
+}
+function goToWeigh(){
+  if(!budgetPrecheck()){ show('edit'); return; }
+  state.budgetWarning='';
+  show('weigh');
+}
+
+function editOrder(){
+  const custom=state.orderMode==='custom';
+  const estimate=state.order.reduce((s,x)=>s+estimatedLinePrice(x),0);
+  const budgetOver=(!custom&&state.budget!=null&&estimate>Number(state.budget)+0.0001);
+  const warning=state.budgetWarning||(budgetOver?`⚠️ این ترکیب با وزن‌های معمول حدود ${budgetMoney(estimate)} می‌شود و از ${state.budgetMode==='around'?'بودجه حدودی':'سقف بودجه'} ${budgetMoney(state.budget)} بیشتر است.`:'');
+  let editor='';
+  if(state.editIndex!==null && state.order[state.editIndex]){
+    const x=state.order[state.editIndex],p=products[x.name];
+    const isCount=p.type==='weightCount'||p.type==='item';
+    const val=isCount?(Number(x.count??x.qty)||1):(Number(x.qty??x.finalWeight)||100);
+    editor=`<div class="card" style="border:2px solid var(--green);background:#f8fff9"><h3>✏️ ویرایش ${p.icon} ${x.name}</h3><div class="mini">${p.piece}</div><label>${isCount?'تعداد':'وزن (گرم)'}</label><input id="inlineEditValue" type="number" min="1" step="1" value="${val}" inputmode="decimal"><button class="primary" onclick="saveInlineEdit()">💾 ذخیره تغییر</button><button class="secondary" onclick="cancelInlineEdit()">انصراف</button></div>`;
+  }
+  return `<div class="screenTitle">${backButton()}<h2>${custom?'✋ سفارش دلخواه مشتری':'✏️ تکمیل سفارش'}</h2></div>${warning&&!custom?`<div class="card"><div class="warn redText" style="white-space:pre-line">${esc(warning)}</div><button class="primary" onclick="forceWeigh()">✅ بله، ادامه بده و برو وزن‌کشی</button><button class="secondary" onclick="clearBudgetWarning()">✏️ نه، می‌خوام سفارش رو تغییر بدم</button></div>`:''}${editor}<div class="card"><h3>${custom?'اقلامی که مشتری انتخاب کرده':'اقلام فعلی'}</h3>${state.order.length?state.order.map((x,i)=>`<div class="item"><span>${products[x.name].icon} ${x.name}<div class="mini">${displayOrderQty(x)}</div></span><div class="row"><button class="smallbtn" onclick="editItem(${i})">✏️ ویرایش</button><button class="remove" onclick="removeItem(${i})">حذف</button></div></div>`).join(''):'<div class="empty">سفارشی ثبت نشده.</div>'}<div class="hr"></div><div class="info">${hasWeighableItems()?'بعد از انتخاب اقلام، می‌توانید سس و نوشیدنی اضافه کنید. سپس وزن‌کشی و مبلغ دقیق انجام می‌شود.':'این سفارش فقط شامل اقلام با قیمت ثابت است؛ نیازی به وزن‌کشی ندارد و مستقیماً به تأیید نهایی می‌رویم.'}</div><label>افزودن محصول</label>
+<div class="card" style="margin:8px 0;border:1px solid var(--line);box-shadow:none">
+  <div class="mini" style="margin-bottom:8px">🍕 پیتزاهای ۲ نفره</div>${pizzaIntent().mentioned&&!pizzaIntent().pepperoni&&!pizzaIntent().mixed&&!pizzaIntent().chickenMushroom?`<div class="info">مشتری گفته پیتزا هم می‌خواهد؛ نوع پیتزا را از گزینه‌های زیر انتخاب کنید.</div>`:''}
+  <div class="row">
+    <button class="choice" onclick="addPizza('پیتزا مخلوط ۲ نفره')">مخلوط<br><b>۶۵۰٬۰۰۰</b></button>
+    <button class="choice" onclick="addPizza('پیتزا قارچ و مرغ ۲ نفره')">قارچ و مرغ<br><b>۶۵۰٬۰۰۰</b></button>
+    <button class="choice" onclick="addPizza('پیتزا پپرونی ۲ نفره')">پپرونی<br><b>۷۰۰٬۰۰۰</b></button>
+  </div>
+</div>
+<select id="product" onchange="syncQtyMode()">${Object.keys(products).map(n=>`<option value="${n}">${products[n].icon} ${n}</option>`).join('')}</select><label>مقدار</label><div class="qtybox"><input id="qty" type="number" min="1" value="1"><select id="qtyMode"><option value="count">تعداد</option><option value="weight">وزن (گرم)</option></select></div><button class="primary" onclick="addFromEdit()">➕ اضافه کردن</button><button class="primary" onclick="goToNextStep()">${hasWeighableItems()?'⚖️ رفتن به وزن‌کشی':'✅ تکمیل سفارش و مشاهده مبلغ'}</button></div>`
+}
+function displayOrderQty(x){const p=products[x.name];if(p.type==='weightCount'){if(x.count)return `تعداد ${x.count} | وزن نهایی ${x.finalWeight??'ثبت نشده'} گرم`;return `${x.finalWeight??x.qty} گرم`}if(p.type==='weight')return `${x.finalWeight??x.qty} گرم`;return `تعداد ${x.qty}`}
+function removeItem(i){state.order.splice(i,1);state.budgetWarning='';state.budgetOverride=false;state.editIndex=null;show('edit')}
+function clearBudgetWarning(){state.budgetWarning='';state.editIndex=null;show('edit')}
+function forceWeigh(){state.budgetWarning='';state.budgetOverride=true;show('weigh')}
+function editItem(i){if(!state.order[i])return;state.editIndex=i;show('edit')}
+function cancelInlineEdit(){state.editIndex=null;show('edit')}
+function saveInlineEdit(){
+  const i=state.editIndex,x=state.order[i];
+  if(!x)return;
+  const p=products[x.name],el=document.getElementById('inlineEditValue'),v=Number(el?.value);
+  if(!Number.isFinite(v)||v<1)return alert(p.type==='weight'?'وزن باید بیشتر از صفر باشد.':'تعداد باید حداقل ۱ باشد.');
+  if(p.type==='item'){x.qty=Math.floor(v);x.finalWeight=null;}
+  else if(p.type==='weightCount'){x.count=Math.floor(v);x.qty=x.count;x.finalWeight=null;x.mode='count';}
+  else{x.qty=Math.round(v);x.finalWeight=null;x.mode='weight';}
+  state.editIndex=null;state.budgetWarning='';state.budgetOverride=false;show('edit');
+}
+function addPizza(name){if(!products[name])return;state.order.push({name,qty:1,mode:'item',count:null,finalWeight:null});state.budgetWarning='';state.budgetOverride=false;show('edit')}
+function syncQtyMode(){const productEl=document.getElementById('product'),modeEl=document.getElementById('qtyMode');if(!productEl||!modeEl)return;const p=products[productEl.value];if(p.type==='weight'){modeEl.innerHTML='<option value=\"weight\">وزن (گرم)</option>';modeEl.value='weight';}else{modeEl.innerHTML='<option value=\"count\">تعداد</option><option value=\"weight\">وزن (گرم)</option>';}}
+function addFromEdit(){const n=document.getElementById('product').value,q=+document.getElementById('qty').value||0,mode=document.getElementById('qtyMode').value,p=products[n];if(q<=0)return;if(p.type==='item'){state.order.push({name:n,qty:q,mode:'item',count:null,finalWeight:null})}else if(p.type==='weightCount'&&mode==='count'){state.order.push({name:n,qty:q,mode:'count',count:q,finalWeight:null})}else{state.order.push({name:n,qty:q,mode:'weight',count:null,finalWeight:null})}state.budgetWarning='';state.budgetOverride=false;show('edit')}
+function buildSauceCount(){return Math.max(1,Number(state.people)||1)}
+function weigh(){return `<div class="screenTitle">${backButton()}<h2>⚖️ وزن‌کشی هوشمند</h2></div><div class="card"><div class="info">وزن واقعی را وارد کنید؛ مبلغ هر آیتم و مجموع سفارش همان لحظه به‌روزرسانی می‌شود. برای سفارش‌های دانه‌ای، تعداد حفظ می‌شود و قیمت بر اساس وزن واقعی محاسبه می‌شود.${state.budgetAdjustmentNote?'<br><b>🛠️ '+esc(state.budgetAdjustmentNote)+'</b>':''}</div>${state.order.length?state.order.map((x,i)=>{const p=products[x.name];if(p.type==='item')return `<div class="item"><span>${p.icon} ${x.name}<div class="mini">${x.qty} عدد × ${moneyK(p.price)}</div></span><span class="badge">قیمت ثابت</span></div>`;const proposed=x.finalWeight??x.qty;const proposedText=p.type==='weightCount'?(x.count?`تعداد سفارش: ${x.count} عدد`:'سفارش دانه‌ای'):`مقدار پیشنهادی: ${proposed} گرم`;return `<div class="card" style="margin-top:10px;border:1px solid var(--line);box-shadow:none"><div class="optionHead"><b>${p.icon} ${x.name}</b><span class="priceUnknown">${x.count?`تعداد سفارش: ${x.count}`:'وزنی'}</span></div><div class="mini" style="margin-top:6px">${proposedText}${x.count?' | تعداد حفظ می‌شود':''}</div><label>وزن واقعی (گرم)</label><input id="w${i}" type="number" min="1" inputmode="decimal" value="${x.finalWeight??''}" placeholder="مثلاً ۴۸۰" oninput="previewWeights()"><div id="p${i}" class="mini" style="margin-top:7px">قیمت فعلی: —</div></div>`}).join(''):'<div class="empty">سفارشی وجود ندارد.</div>'}<div class="card" style="background:#f7fff9;border:1px solid #d7f1df;box-shadow:none;margin-top:12px"><div class="item"><span><b>مبلغ لحظه‌ای سفارش</b><div id="liveBudgetStatus" class="mini">بعد از وارد کردن وزن‌ها محاسبه می‌شود.</div></span><b id="liveTotal" class="total">—</b></div></div><button class="primary" onclick="applyWeights()">تأیید وزن‌ها و محاسبه مبلغ نهایی</button></div>`}
+function previewWeights(){let total=0,complete=true;for(let i=0;i<state.order.length;i++){const x=state.order[i],p=products[x.name],priceEl=document.getElementById('p'+i);if(p.type==='item'){total+=linePrice(x);continue;}const el=document.getElementById('w'+i),w=+(el?.value||0);if(w>0){const price=p.price*w/1000;total+=price;if(priceEl)priceEl.textContent='قیمت فعلی: '+moneyK(price);}else{complete=false;if(priceEl)priceEl.textContent='قیمت فعلی: —';}}const totalEl=document.getElementById('liveTotal'),statusEl=document.getElementById('liveBudgetStatus');if(totalEl)totalEl.textContent=complete?moneyK(total):'—';if(statusEl){if(!complete)statusEl.textContent='هنوز وزن همه اقلام وارد نشده است.';else if(state.orderMode!=='custom'&&state.budget!=null&&state.budgetMode==='max'&&total>state.budget)statusEl.textContent='⚠️ '+budgetMoney(total-state.budget)+' بیشتر از سقف بودجه است.';else if(state.orderMode!=='custom'&&state.budget!=null&&state.budgetMode==='around'&&total>state.budget)statusEl.textContent='مبلغ کمی بیشتر از بودجه حدودی است.';else statusEl.textContent='مبلغ با وزن‌های فعلی محاسبه شد.';}}
+function applyWeights(){for(let i=0;i<state.order.length;i++){const x=state.order[i],p=products[x.name];if(p.type==='item')continue;const el=document.getElementById('w'+i),w=+el.value||0;if(w<=0){alert('لطفاً وزن واقعی «'+x.name+'» را وارد کنید.');return;}x.finalWeight=w;}show('confirm')}
+function budgetText(){if(state.budget===null||state.budget===undefined||state.budget==='')return 'بدون محدودیت بودجه';return `${state.budgetMode==='around'?'حدود':'سقف'} ${budgetMoney(state.budget)}`}
+function overBudget(){return state.orderMode!=='custom'&&state.budget!=null&&state.budgetMode==='max'&&totalK()>state.budget+0.0001}
+function saveOrAdjust(){if(state.budget==null){saveOrder();return}if(overBudget()){alert('این مبلغ از سقف بودجه بیشتر است؛ ابتدا باید سفارش را تنظیم کنید.');return}saveOrder()}
+function suggestAdjustment(){
+  if(state.budget==null)return false;
+  const budget=+state.budget, current=totalK();
+  if(current<=budget+0.0001)return true;
+
+  // V5.14: قبل از اعلام «غیرممکن»، همه اقلام قابل تنظیم را بررسی می‌کنیم.
+  // اقلام دانه‌ای با کاهش تعداد و وزن متناسب با وزن فعلی بررسی می‌شوند؛
+  // اقلام وزنی می‌توانند تا ۵۰ گرم یا صفر (حذف کامل) تنظیم شوند.
+  const adjustable=state.order.filter(x=>products[x.name].type!=='item');
+  const countItems=adjustable.filter(x=>products[x.name].type==='weightCount'&&x.count&&Number(x.finalWeight||0)>0);
+  const weightItems=adjustable.filter(x=>products[x.name].type!=='item'&&products[x.name].type!=='weightCount');
+
+  const ranges=[];
+  for(const x of countItems){
+    const c=Number(x.count), w=Number(x.finalWeight||0), arr=[];
+    for(let n=c;n>=1;n--){
+      const ww=Math.round(w*n/c);
+      arr.push({count:n,weight:ww});
+    }
+    ranges.push({x,arr});
+  }
+  for(const x of weightItems){
+    const cur=Number(x.finalWeight||x.qty||0), arr=[];
+    for(let ww=cur;ww>=50;ww-=25)arr.push({weight:ww});
+    if(cur>=50)arr.push({weight:0});
+    ranges.push({x,arr});
+  }
+
+  // Nothing except fixed-price items can be adjusted.
+  if(!ranges.length)return false;
+
+  let best=null, checked=0;
+  function walk(i,plan,total,score){
+    if(checked++>250000)return;
+    if(i===ranges.length){
+      if(total>budget+0.0001)return;
+      const gap=budget-total;
+      // اول کمترین تعداد تغییر؛ سپس کمترین دوری از سقف؛ سپس توزیع متعادل کاهش.
+      const reductions=plan.reduce((s,a)=>s+(a.reduction||0),0);
+      const imbalance=plan.reduce((s,a)=>s+(a.fraction||0)*(a.fraction||0),0);
+      const key=[reductions,gap,imbalance];
+      if(!best||key[0]<best.key[0]||(key[0]===best.key[0]&&(key[1]<best.key[1]-0.0001||(Math.abs(key[1]-best.key[1])<0.0001&&key[2]<best.key[2]))))best={plan,total,key};
+      return;
+    }
+    const {x,arr}=ranges[i],p=products[x.name],baseW=Number(x.finalWeight||x.qty||0),baseC=Number(x.count||0);
+    for(const opt of arr){
+      let line;
+      if(p.type==='weightCount')line=p.price*opt.weight/1000;
+      else line=p.price*opt.weight/1000;
+      const oldLine=linePrice(x), reduction=Math.max(0,oldLine-line);
+      if(total+line>budget+current)continue;
+      const fraction=baseW>0?Math.max(0,(baseW-opt.weight)/baseW):0;
+      walk(i+1,plan.concat([{x,opt,reduction:(opt.count?baseC-opt.count:0),fraction}]),total+line,score+reduction);
+    }
+  }
+
+  // Fixed-price items stay untouched; start from their current total.
+  const fixedTotal=state.order.filter(x=>products[x.name].type==='item').reduce((s,x)=>s+linePrice(x),0);
+  walk(0,[],fixedTotal,0);
+  if(!best)return false;
+
+  let changed=false, countChanged=false;
+  for(const a of best.plan){
+    const x=a.x,p=products[x.name],o=a.opt;
+    if(p.type==='weightCount'){
+      if(Number(x.count)!==Number(o.count)||Number(x.finalWeight)!==Number(o.weight)){
+        x.count=o.count;x.qty=o.count;x.finalWeight=o.weight;changed=true;countChanged=true;
+      }
+    }else if(Number(x.finalWeight||x.qty)!==Number(o.weight)){
+      x.finalWeight=o.weight;changed=true;
+    }
+  }
+  state.needsReweigh=changed;
+  state.budgetAdjustmentNote=countChanged?'برای رسیدن به سقف بودجه، تعداد بعضی اقلام دانه‌ای هم تنظیم شده؛ لطفاً وزن‌کشی را دوباره انجام دهید.':'مقدار بعضی اقلام برای رسیدن به سقف بودجه تنظیم شده؛ لطفاً وزن‌کشی را دوباره انجام دهید.';
+  return changed;
+}
+function applyBudgetAdjustment(){
+  if(!suggestAdjustment())return alert('با بررسی همه ترکیب‌های منطقی، رسیدن به سقف بودجه ممکن نشد.');
+  show('weigh');
+}
+function confirmOrder(){const t=totalK(),over=overBudget(),around=state.budget!=null&&state.budgetMode==='around',custom=state.orderMode==='custom';return `<div class="screenTitle">${backButton()}<h2>✅ تأیید نهایی</h2></div><div class="card">${custom?'':'<div class="item"><span>تعداد نفرات</span><b>'+state.people+'</b></div><div class="item"><span>بودجه</span><b>'+budgetText()+'</b></div>'}${state.order.map(x=>`<div class="item"><span>${products[x.name].icon} ${x.name}<div class="mini">${displayOrderQty(x)}</div></span><b>${moneyK(linePrice(x))}</b></div>`).join('')}<div style="display:flex;justify-content:space-between;margin-top:15px"><span class="total">مبلغ نهایی</span><span class="total">${moneyK(t)}</span></div>${over?`<div class="warn redText" style="margin-top:12px">⚠️ مبلغ واقعی ${budgetMoney(t)} است و ${budgetMoney(t-state.budget)} از سقف ${budgetMoney(state.budget)} بیشتر شده.</div><button class="primary" onclick="state.budgetOverride=true;saveOrder()">✅ مشتری تأیید کرد؛ ثبت با همین مبلغ</button><button class="secondary" onclick="state.budgetOverride=false;show('edit')">✏️ تغییر سفارش</button>`:around&&t>state.budget?`<div class="warn" style="margin-top:12px">مبلغ نهایی کمی بیشتر از بودجه حدودی شماست. دوست دارید کمترش کنیم یا همین مقدار مورد تأییده؟</div><button class="primary" onclick="saveOrder()">همین مقدار تأییده</button><button class="secondary" onclick="show('edit')">کمترش کنیم</button>`:`<div class="successbox greenText" style="margin-top:12px">✅ مبلغ نهایی مورد تأیید اولیه است.</div><button class="primary" onclick="saveOrder()">ثبت نهایی سفارش</button>`}<button class="secondary" onclick="show('edit')">✏️ ویرایش سفارش</button></div>`}
+function saveOrder(){if(!state.order.length){alert('سفارش خالی است.');return;}if(overBudget()&&!state.budgetOverride){alert('مبلغ سفارش از سقف بودجه بیشتر است. اگر مشتری تأیید کرده، گزینه «ثبت با همین مبلغ» را بزنید.');return;}const now=new Date(),arr=getOrders(),id=nextOrderId(arr),saved={id,time:now.toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'}),date:todayKey(now),createdAt:now.toISOString(),total:Math.round(totalK()*1000),items:JSON.parse(JSON.stringify(state.order)),people:state.people,status:'در انتظار',customer:{...state.customer},orderType:state.orderType,budget:state.budget,budgetMode:state.budgetMode};arr.unshift(saved);setOrders(arr);if(state.customer.phone){let cs=getCustomers(),c=cs.find(x=>x.phone===state.customer.phone);if(!c)c={phone:state.customer.phone,name:state.customer.name||'بدون نام',orders:0,totalSpent:0,history:[]};c.name=state.customer.name||c.name||'بدون نام';c.orders=(c.orders||0)+1;c.totalSpent=(c.totalSpent||0)+saved.total;c.lastOrderTotal=saved.total;c.lastOrderAt=saved.time;c.history=(c.history||[]).concat([{id:saved.id,date:saved.date,total:saved.total,time:saved.time,status:saved.status,items:saved.items}]);cs=cs.filter(x=>x.phone!==state.customer.phone);cs.unshift(c);setCustomers(cs)}state.lastSaved=saved;alert('سفارش #'+id+' با موفقیت ثبت شد. ✅');state.order=[];show('receipt')}
+function receipt(){const o=state.lastSaved;if(!o)return '<div class="card empty">سفارشی برای نمایش وجود ندارد.</div>';return `<div class="screenTitle"><h2>🧾 رسید سفارش #${o.id}</h2></div><div class="card"><div class="successbox greenText">✅ سفارش با موفقیت ثبت شد.</div><div class="item"><span>زمان</span><b>${o.time}</b></div><div class="item"><span>نوع سفارش</span><b>${esc(o.orderType||'حضوری')}</b></div>${o.customer?.name?`<div class="item"><span>مشتری</span><b>${esc(o.customer.name)}</b></div>`:''}${o.items.map(x=>`<div class="item"><span>${products[x.name].icon} ${x.name}<div class="mini">${displayOrderQty(x)}</div></span><b>${moneyK(linePrice(x))}</b></div>`).join('')}<div style="display:flex;justify-content:space-between;margin-top:15px"><span class="total">مبلغ نهایی</span><span class="total">${moneyK(o.total/1000)}</span></div><button class="primary" onclick="startNew()">➕ سفارش جدید</button><button class="secondary" onclick="show('orders')">📋 سفارش‌های امروز</button></div>`}
+function getOrders(){return JSON.parse(localStorage.getItem('alsokhari_orders_v5')||'[]')}function setOrders(a){localStorage.setItem('alsokhari_orders_v5',JSON.stringify(a))}function getCustomers(){return JSON.parse(localStorage.getItem('alsokhari_customers_v5')||'[]')}function setCustomers(a){localStorage.setItem('alsokhari_customers_v5',JSON.stringify(a))}function todayKey(d=new Date()){const y=d.getFullYear(),m=String(d.getMonth()+1).padStart(2,'0'),day=String(d.getDate()).padStart(2,'0');return y+'-'+m+'-'+day}function nextOrderId(a){return a.reduce((m,o)=>Math.max(m,Number(o.id)||999),999)+1}
+function syncCustomerOrderStatus(order){if(!order?.customer?.phone)return;let cs=getCustomers(),c=cs.find(x=>x.phone===order.customer.phone);if(!c)return;c.history=(c.history||[]).map(h=>h.id===order.id?{...h,status:order.status}:h);setCustomers(cs)}
+function setStatus(id,status){let a=getOrders(),o=a.find(x=>x.id===id);if(o){o.status=status;setOrders(a);syncCustomerOrderStatus(o);show('orders')}}
+function cancelOrder(id){const o=getOrders().find(x=>x.id===id);if(!o)return;if(o.status==='لغو شد'){alert('این سفارش قبلاً لغو شده است.');return;}state.cancelPending=id;state.detailId=id;show('orderDetail')}
+function confirmCancelOrder(){const id=state.cancelPending;if(id==null)return;let a=getOrders(),o=a.find(x=>x.id===id);if(!o)return;if(o.status==='لغو شد'){state.cancelPending=null;show('orders');return;}o.status='لغو شد';o.cancelledAt=new Date().toISOString();setOrders(a);syncCustomerOrderStatus(o);state.cancelPending=null;show('orders')}
+function dismissCancelOrder(){state.cancelPending=null;show('orderDetail')}
+function orderDetail(id=state.detailId){const o=getOrders().find(x=>x.id===id);if(!o)return '<div class="card empty">سفارش پیدا نشد.</div>';return `<div class="screenTitle">${backButton()}<h2>🧾 جزئیات سفارش #${o.id}</h2></div><div class="card"><div class="item"><span>وضعیت</span><b>${esc(o.status)}</b></div><div class="item"><span>تاریخ / ساعت</span><b>${esc(o.date||'-')} | ${esc(o.time||'-')}</b></div>${o.people?`<div class="item"><span>تعداد نفرات</span><b>${o.people}</b></div>`:''}${o.customer?.name?`<div class="item"><span>مشتری</span><b>${esc(o.customer.name)}</b></div>`:''}${o.customer?.phone?`<div class="item"><span>شماره تماس</span><b>${esc(o.customer.phone)}</b></div>`:''}${o.budget!=null?`<div class="item"><span>بودجه</span><b>${o.budgetMode==='around'?'حدود':'سقف'} ${budgetMoney(o.budget)}</b></div>`:''}<h3 style="margin-top:14px">اقلام</h3>${o.items.map(x=>`<div class="item"><span>${products[x.name].icon} ${x.name}<div class="mini">${displayOrderQty(x)}</div></span><b>${moneyK(linePrice(x))}</b></div>`).join('')}<div style="display:flex;justify-content:space-between;margin-top:15px"><span class="total">مبلغ سفارش</span><span class="total">${moneyK(o.total/1000)}</span></div>${o.status!=='لغو شد'?`<button class="danger secondary" onclick="cancelOrder(${o.id})">🗑️ لغو سفارش</button>`:''}</div>${state.cancelPending===o.id?`<div class="modalBackdrop"><div class="modalCard"><h3>لغو سفارش #${o.id}؟</h3><p>با تأیید، این سفارش لغو می‌شود.</p><div class="modalActions"><button class="secondary" onclick="dismissCancelOrder()">خیر، برگرد</button><button class="danger secondary" onclick="confirmCancelOrder()">بله، لغو کن</button></div></div></div>`:''}`}
+function orders(){const arr=getOrders().filter(o=>o.date===todayKey()),active=arr.filter(o=>o.status!=='لغو شد'),sum=active.reduce((s,o)=>s+(o.total||0),0);return `<div class="screenTitle">${backButton()}<h2>📋 سفارش‌های امروز</h2><span class="badge">${arr.length} سفارش</span></div><div class="card"><div class="item"><span>تعداد سفارش امروز</span><b>${arr.length}</b></div><div class="item"><span>فروش ثبت‌شده امروز</span><b>${moneyK(sum/1000)}</b></div>${arr.length-active.length?`<div class="mini redText">${arr.length-active.length} سفارش لغو شده و در فروش امروز محاسبه نشده.</div>`:''}</div>${arr.length?arr.map(o=>`<div class="card"><div style="display:flex;justify-content:space-between"><b>#${o.id}</b><span class="badge">${o.status}</span></div><div class="muted">${o.time} | ${o.people?o.people+' نفر | ':''}${o.orderType||'حضوری'}${o.customer?.name?' | '+esc(o.customer.name):''}</div><p>${o.items.map(x=>x.name).join('، ')}</p><b>${moneyK(o.total/1000)}</b><div class="row" style="margin-top:10px"><button class="smallbtn" onclick="state.detailId=${o.id};show('orderDetail')">👁 جزئیات</button>${['در انتظار','در حال آماده‌سازی','آماده','تحویل شد'].map(st=>`<button class="smallbtn ${o.status===st?'success':''}" onclick="setStatus(${o.id},'${st}')">${st}</button>`).join('')}${o.status!=='لغو شد'?`<button class="smallbtn danger" onclick="cancelOrder(${o.id})">لغو</button>`:''}</div></div>`).join(''):'<div class="card empty">امروز هنوز سفارشی ثبت نشده.</div>'}<button class="secondary" onclick="show('ordersAll')">📚 همه سفارش‌ها</button>`}
+function ordersAll(){const arr=getOrders();return `<div class="screenTitle">${backButton()}<h2>📚 همه سفارش‌ها</h2><button class="smallbtn" onclick="show('orders')">امروز</button></div>${arr.length?arr.map(o=>`<div class="card"><div style="display:flex;justify-content:space-between"><b>#${o.id}</b><span class="badge">${o.status}</span></div><div class="muted">${o.date||'-'} | ${o.time||'-'} | ${o.customer?.name?esc(o.customer.name):'بدون نام'}</div><div class="mini">${o.items.map(x=>x.name).join('، ')}</div><b>${moneyK((o.total||0)/1000)}</b><button class="secondary" onclick="state.detailId=${o.id};show('orderDetail')">👁 مشاهده جزئیات</button></div>`).join(''):'<div class="card empty">هنوز سفارشی ثبت نشده.</div>'}`}
+function customers(){let cs=getCustomers();return `<div class="screenTitle">${backButton()}<h2>👥 مشتریان</h2><span class="badge">${cs.length} مشتری</span></div><div class="card"><input id="customerSearch" oninput="renderCustomerList()" placeholder="جست‌وجو با شماره یا نام"><div id="customerList" style="margin-top:10px">${customerListHtml(cs)}</div></div>`}
+function customerListHtml(cs){return cs.length?cs.map(c=>`<div class="card" style="margin:8px 0;cursor:pointer" onclick="state.customerDetailPhone='${esc(c.phone)}';show('customerDetail')"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><span><b>👤 ${esc(c.name)}</b><div class="mini">${esc(c.phone)} | ${c.orders||0} سفارش | آخرین: ${c.lastOrderAt||'-'}</div></span><b>${c.lastOrderTotal?moneyK(c.lastOrderTotal/1000):'-'}</b></div><div class="mini" style="margin-top:6px">مجموع خرید: ${c.totalSpent?moneyK(c.totalSpent/1000):'-'} • مشاهده سابقه ›</div></div>`).join(''):'<div class="empty">هنوز مشتری ثبت نشده.</div>'}
+function renderCustomerList(){const el=document.getElementById('customerSearch');if(!el)return;let q=(el.value||'').trim();let cs=getCustomers().filter(c=>(c.phone||'').includes(q)||(c.name||'').includes(q));document.getElementById('customerList').innerHTML=customerListHtml(cs)}
+function customerDetail(phone=state.customerDetailPhone){const c=getCustomers().find(x=>x.phone===phone);if(!c)return `<div class="card empty">مشتری پیدا نشد.</div>`;const history=(c.history||[]).slice().reverse();return `<div class="screenTitle">${backButton()}<h2>👤 ${esc(c.name||'بدون نام')}</h2></div><div class="card"><div class="item"><span>شماره موبایل</span><b>${esc(c.phone)}</b></div><div class="item"><span>تعداد سفارش</span><b>${c.orders||0}</b></div><div class="item"><span>مجموع خرید</span><b>${c.totalSpent?moneyK(c.totalSpent/1000):'-'}</b></div></div><div class="card"><h3>📚 سابقه سفارش‌ها</h3>${history.length?history.map(h=>`<div class="item"><span><b>#${h.id}</b><div class="mini">${esc(h.date||'-')} | ${esc(h.time||'-')} | ${esc(h.status||'در انتظار')}<br>${(h.items||[]).map(x=>esc(x.name)).join('، ')}</div></span><b>${moneyK((h.total||0)/1000)}</b></div>`).join(''):'<div class="empty">سابقه‌ای ثبت نشده.</div>'}</div><button class="primary" onclick="startNew();state.customer.phone='${esc(c.phone)}';state.customer.name='${esc(c.name||'')}';show('new')">➕ سفارش جدید برای این مشتری</button>`}
+function reportDateOffset(days){const d=new Date();d.setDate(d.getDate()+days);return todayKey(d)}
+function reportRange(mode){const end=todayKey();if(mode==='day')return {label:'امروز',start:end,end};if(mode==='week')return {label:'۷ روز اخیر',start:reportDateOffset(-6),end};const d=new Date();const start=new Date(d.getFullYear(),d.getMonth(),1);return {label:'این ماه',start:todayKey(start),end};}
+function reports(){const mode=state.reportMode||'day',r=reportRange(mode),all=getOrders(),active=all.filter(o=>o.status!=='لغو شد'&&o.date>=r.start&&o.date<=r.end),sales=active.reduce((s,o)=>s+(o.total||0),0),avg=active.length?sales/active.length:0;
+let phones=[...new Set(active.map(o=>o.customer?.phone).filter(Boolean))],newC=0,oldC=0;phones.forEach(phone=>{const first=all.filter(o=>o.status!=='لغو شد'&&o.customer?.phone===phone).sort((a,b)=>(a.date||'').localeCompare(b.date||''))[0];if(first&&first.date>=r.start&&first.date<=r.end)newC++;else oldC++;});
+const itemMap={};active.forEach(o=>(o.items||[]).forEach(x=>{const revenue=linePrice(x);if(!itemMap[x.name])itemMap[x.name]={name:x.name,revenue:0,count:0};itemMap[x.name].revenue+=revenue;itemMap[x.name].count+=(products[x.name]?.type==='item'?(x.qty||0):(x.count||1));}));
+const top=Object.values(itemMap).sort((a,b)=>b.revenue-a.revenue).slice(0,5),maxTop=top[0]?.revenue||1;
+let days=[];if(mode==='day'){days=[{key:r.end,label:'امروز'}]}else{let cur=new Date(r.start+'T00:00:00');const end=new Date(r.end+'T00:00:00');while(cur<=end){days.push({key:todayKey(cur),label:cur.toLocaleDateString('fa-IR',{day:'numeric',month:'short'})});cur.setDate(cur.getDate()+1);}}
+const daily=days.map(d=>{const os=active.filter(o=>o.date===d.key),v=os.reduce((s,o)=>s+(o.total||0),0);return {...d,count:os.length,value:v};});const maxDay=Math.max(...daily.map(x=>x.value),1);
+return `<div class="screenTitle">${backButton()}<h2>📊 گزارش‌ها</h2></div><div class="row" style="margin-bottom:12px"><button class="choice ${mode==='day'?'active':''}" onclick="state.reportMode='day';show('reports')">امروز</button><button class="choice ${mode==='week'?'active':''}" onclick="state.reportMode='week';show('reports')">۷ روز اخیر</button><button class="choice ${mode==='month'?'active':''}" onclick="state.reportMode='month';show('reports')">این ماه</button></div><div class="card"><h3>💰 خلاصه ${r.label}</h3><div class="item"><span>فروش ثبت‌شده</span><b>${moneyK(sales/1000)}</b></div><div class="item"><span>تعداد سفارش</span><b>${active.length}</b></div><div class="item"><span>میانگین مبلغ هر سفارش</span><b>${active.length?moneyK(avg/1000):'-'}</b></div></div><div class="card"><h3>👥 مشتریان</h3><div class="item"><span>مشتری جدید</span><b>${newC}</b></div><div class="item"><span>مشتری قدیمی</span><b>${oldC}</b></div><div class="mini">مبنای این بخش شماره موبایل ثبت‌شده برای سفارش‌هاست.</div></div><div class="card"><h3>🏆 پرفروش‌ترین آیتم‌ها</h3>${top.length?top.map((x,i)=>`<div class="item"><span>${i+1}. ${products[x.name]?.icon||'🍗'} ${esc(x.name)}<div class="mini">${x.count} عدد/ثبت • ${moneyK(x.revenue/1000)}</div><div style="height:7px;background:#edf0f2;border-radius:8px;margin-top:6px;overflow:hidden"><div style="height:100%;width:${Math.max(8,Math.round(x.revenue/maxTop*100))}%;background:#ffc928;border-radius:8px"></div></div></span><b>${moneyK(x.revenue/1000)}</b></div>`).join(''):'<div class="empty">در این بازه سفارشی ثبت نشده.</div>'}</div><div class="card"><h3>📈 فروش روزانه</h3>${daily.map(d=>`<div class="item"><span>${d.label}<div class="mini">${d.count} سفارش</div><div style="height:7px;background:#edf0f2;border-radius:8px;margin-top:6px;overflow:hidden"><div style="height:100%;width:${d.value?Math.max(5,Math.round(d.value/maxDay*100)):0}%;background:#16a35a;border-radius:8px"></div></div></span><b>${d.value?moneyK(d.value/1000):'-'}</b></div>`).join('')}</div><div class="card"><div class="mini">سفارش‌های لغوشده در فروش این گزارش محاسبه نشده‌اند.</div></div>`}
+function settings(){return `<div class="screenTitle">${backButton()}<h2>⚙️ تنظیمات</h2></div><div class="card"><h3>قیمت‌های فعال</h3>${Object.entries(products).map(([n,p])=>`<div class="item"><span>${p.icon} ${n}<div class="mini">${p.type==='weight'?'کیلویی':p.type==='weightCount'?'کیلویی؛ امکان سفارش دانه‌ای و وزن‌کشی نهایی':'هر عدد'}</div></span><span>${p.type==='item'?moneyK(p.price):moneyK(p.price)+' / کیلو'}</span></div>`).join('')}<div class="info">مبنای پیشنهاد ۴ نفره مرغ: ۴ فیله + ۲ ران + ۴ کتف‌وبال. سیب‌زمینی و قارچ فقط بر اساس وزن (گرم) انتخاب می‌شوند؛ حدود ۱۰۰ گرم برای هر نفر. برای تنوع: ۲ کوکتل، ۴ توپک، ۳ پیاز و معمولاً ۱ کوردن‌بلو؛ با افزایش نفرات این آیتم‌ها به‌صورت تدریجی زیاد می‌شوند.</div><div class="warn" style="margin-top:10px">V5 هنوز به ترازو یا صندوق/POS وصل نیست؛ وزن واقعی فعلاً دستی وارد می‌شود. V4 دست‌نخورده باقی می‌ماند.</div></div>`}
+function esc(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+if(CUSTOMER_MODE) document.body.classList.add('customer-mode');
+show('home');
+</script></body></html>
